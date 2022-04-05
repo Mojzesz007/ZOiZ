@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +19,7 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
 
 @SpringBootApplication
-@RestController
+
 public class BackendApplication {
 
 	public static void main(String[] args) {
@@ -41,11 +42,11 @@ public class BackendApplication {
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
 
-	@GetMapping("/hello")
-	@ResponseBody
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) throws JsonProcessingException {
-		String message = String.format("Hello %s!", name);
-		ObjectMapper mapper = new ObjectMapper();
-		return mapper.writeValueAsString(message);
-	}
+//	@GetMapping("/hello")
+//	@ResponseBody
+//	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) throws JsonProcessingException {
+//		String message = String.format("Hello %s!", name);
+//		ObjectMapper mapper = new ObjectMapper();
+//		return mapper.writeValueAsString(message);
+//	}
 }

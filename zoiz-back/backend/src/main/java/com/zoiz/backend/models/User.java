@@ -1,4 +1,4 @@
-package models;
+package com.zoiz.backend.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

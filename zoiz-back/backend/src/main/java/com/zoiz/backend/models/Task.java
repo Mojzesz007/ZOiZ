@@ -1,4 +1,4 @@
-package models;
+package com.zoiz.backend.models;
 
 import java.time.LocalDate;
 import java.util.Date;
