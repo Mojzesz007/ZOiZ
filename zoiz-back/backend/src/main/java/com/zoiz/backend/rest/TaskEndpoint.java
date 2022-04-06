@@ -52,4 +52,53 @@ public class TaskEndpoint {
                 taskService.findDone(done),
                 HttpStatus.OK);
     }
+
+    @GetMapping("/overdue")
+    @ResponseBody
+    ResponseEntity<List<Task>> getOverdueTasks() {
+        return new ResponseEntity<>(
+                taskService.findoverdue(),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/insevendays")
+    @ResponseBody
+    ResponseEntity<List<Task>> getInSevendaysTasks() {
+        return new ResponseEntity<>(
+                taskService.findInSevenDays(),
+                HttpStatus.OK);
+    }
+
+    @PostMapping("/add")
+    ResponseEntity<Task> createTask(
+            @RequestBody Task task
+    ) {
+        return new ResponseEntity<>(
+                taskService.createTask(task),
+                HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    ResponseEntity<Task> updateTask(
+            @RequestBody Task task
+    ) {
+        return new ResponseEntity<>(
+                taskService.updateTask(task),
+                HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    void deleteTask(
+            @PathVariable long id) {
+        taskService.deleteTask(id);
+    }
+
+    @GetMapping("/{id}")
+    ResponseEntity<Task> getTask(
+            @PathVariable long id
+    ) {
+        return new ResponseEntity<>(
+                taskService.findById(id),
+                HttpStatus.OK);
+    }
 }

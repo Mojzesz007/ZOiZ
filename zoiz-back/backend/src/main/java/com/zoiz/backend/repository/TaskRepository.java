@@ -10,7 +10,7 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
     @Query(
-            value = "SELECT * FROM tasks t WHERE t.date_from = ?1 AND t.date_to = ?2",
+            value = "SELECT * FROM tasks t WHERE t.date_from > ?1 AND t.date_to < ?2",
             nativeQuery=true)
     List<Task> findByStartAndEndDate(Date startDate, Date endDate);
 
@@ -18,4 +18,11 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
             value = "SELECT * FROM tasks t WHERE t.done = ?1",
             nativeQuery=true)
     List<Task> findDone(Boolean done);
+
+    @Query(
+            value = "SELECT * FROM tasks t WHERE t.dateTo < ?1",
+            nativeQuery=true)
+    List<Task> findOverdue(Date overdue);
+
+    void deleteTaskById(Long id);
 }

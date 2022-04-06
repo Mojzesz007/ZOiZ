@@ -5,7 +5,10 @@ import com.zoiz.backend.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class TaskService {
@@ -25,5 +28,37 @@ public class TaskService {
     }
     public List<Task> findDone(Boolean done) {
         return taskRepository.findDone(done);
+    }
+
+    public List<Task> findoverdue() {
+        Date today = new Date(Calendar.getInstance().getTime().getTime());
+        return taskRepository.findOverdue(today);
+    }
+
+    public List<Task> findInSevenDays() {
+        Date today = new Date(Calendar.getInstance().getTime().getTime());
+        LocalDate week = today.toLocalDate();
+        week = week.plusDays(7);
+        Date inSevenDays = new Date(week.toEpochDay());
+        return taskRepository.findByStartAndEndDate(today, inSevenDays);
+    }
+
+
+    public Task createTask(Task task) {
+        return taskRepository.save(task);
+    }
+
+    public Task updateTask(Task task) {
+        return taskRepository.save(task);
+    }
+
+    public Task findById(Long id){
+        return taskRepository.findByIdEquals(id)
+                .orElseThrow(() -> new NoSuchElementException("Cant find task with id: " + id));
+    }
+
+    @Transactional
+    public void deleteTask(long taskId) {
+        taskRepository.deleteTaskById(taskId);
     }
 }
