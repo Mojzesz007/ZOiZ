@@ -3,6 +3,8 @@ package com.zoiz.backend.service;
 import com.zoiz.backend.models.Task;
 import com.zoiz.backend.repository.TaskRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -19,13 +21,13 @@ public class TaskService {
     }
 
     public List<Task> findAll() {
-
         return taskRepository.findAll();
     }
 
     public List<Task> findByStartDateAndEndDate(Date start, Date end) {
         return taskRepository.findByStartAndEndDate(start, end);
     }
+
     public List<Task> findDone(Boolean done) {
         return taskRepository.findDone(done);
     }

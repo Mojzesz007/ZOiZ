@@ -6,8 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
+
+    Optional<Task> findByIdEquals(Long id);
 
     @Query(
             value = "SELECT * FROM tasks t WHERE t.date_from > ?1 AND t.date_to < ?2",
