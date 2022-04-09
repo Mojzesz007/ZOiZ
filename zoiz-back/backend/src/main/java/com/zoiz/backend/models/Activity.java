@@ -37,12 +37,12 @@ public class Activity extends StandardEntity {
     private boolean important;
 
 
-    public Date getActivityDate() {
-        return activityDate;
+    public Date getActivityStart() {
+        return activityStart;
     }
 
-    public void setActivityDate(Date activityDate) {
-        this.activityDate = activityDate;
+    public void setActivityStart(Date activityStart) {
+        this.activityStart = activityStart;
     }
 
     public Date getActivity() {

@@ -31,8 +31,10 @@ public class TaskService {
     public List<Task> findDone(Boolean done) {
         return taskRepository.findDone(done);
     }
-
-    public List<Task> findoverdue() {
+    /**
+     * Metoda zwraca zadania nieukończone
+     **/
+    public List<Task> findOverdue() {
         Date today = new Date(Calendar.getInstance().getTime().getTime());
         return taskRepository.findOverdue(today);
     }

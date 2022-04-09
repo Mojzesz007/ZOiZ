@@ -48,7 +48,7 @@ public class TaskEndpoint {
     @ResponseBody
     ResponseEntity<List<Task>> getOverdueTasks() {
         return new ResponseEntity<>(
-                taskService.findoverdue(),
+                taskService.findOverdue(),
                 HttpStatus.OK);
     }
 
@@ -61,6 +61,7 @@ public class TaskEndpoint {
     }
 
     @PostMapping("/add")
+    @ResponseBody
     ResponseEntity<Task> createTask(
             @RequestBody Task task
     ) {
@@ -70,6 +71,7 @@ public class TaskEndpoint {
     }
 
     @PutMapping("/update")
+    @ResponseBody
     ResponseEntity<Task> updateTask(
             @RequestBody Task task
     ) {
@@ -85,6 +87,7 @@ public class TaskEndpoint {
     }
 
     @GetMapping("/{id}")
+    @ResponseBody
     ResponseEntity<Task> getTask(
             @PathVariable long id
     ) {

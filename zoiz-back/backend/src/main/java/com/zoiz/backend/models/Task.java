@@ -13,7 +13,7 @@ public class Task extends StandardEntity{
     @Temporal(TemporalType.TIMESTAMP)
     public Date dateFrom=java.sql.Date.valueOf(LocalDate.now());
 
-    @Column(name="date_to")
+    @Column(name = "date_to")
     @Temporal(TemporalType.TIMESTAMP)
     public Date dateTo;
 
