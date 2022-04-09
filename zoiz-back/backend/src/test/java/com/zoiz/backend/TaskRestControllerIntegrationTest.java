@@ -15,6 +15,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 
+import java.io.IOException;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.hamcrest.CoreMatchers.is;
@@ -45,6 +50,7 @@ public class TaskRestControllerIntegrationTest {
 		String message = "wiadomosc testowa";
 		String subject = "jakis temat";
 		createTestTask(message, subject);
+		createTestTask("m", "s");
 
 		mvc.perform(get("/tasks/all")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -52,7 +58,21 @@ public class TaskRestControllerIntegrationTest {
 				.andExpect(content()
 						.contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$[0].message", is(message)))
-				.andExpect(jsonPath("$[0].subject", is(subject)));
+				.andExpect(jsonPath("$[0].subject", is(subject)))
+				.andExpect(jsonPath("$[1].message", is("m")))
+				.andExpect(jsonPath("$[1].subject", is("s")));
+	}
+
+	@Test
+	public void whenValidInput_createTask() throws Exception {
+		Task task = new Task("hmm", "yeah");
+		mvc.perform(
+				post("/tasks/add")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(JsonUtil.toJson(task)));
+
+		List<Task> found = taskRepository.findAll();
+		assertThat(found).extracting(Task::getMessage).containsOnly("hmm");
 	}
 
 	private void createTestTask(String message, String subject) {
