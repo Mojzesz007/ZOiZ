@@ -37,6 +37,14 @@ public class Task extends StandardEntity{
     @Column
     private Boolean sendNotification;
 
+    public Task(String message, String subject) {
+        this.message = message;
+        this.subject = subject;
+    }
+
+    public Task() {
+    }
+
     public Date getDateFrom() {
         return dateFrom;
     }
