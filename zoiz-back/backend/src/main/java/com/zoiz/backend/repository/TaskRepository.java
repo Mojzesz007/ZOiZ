@@ -9,11 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
+
     /**
      * Metoda zwraca obiekt zadania
      * @param id danego obiektu
      **/
     Optional<Task> findByIdEquals(Long id);
+
     /**
      * Metoda zwraca zadania pomiędzy podanymi datami
      * @param startDate data początkowa
@@ -41,6 +43,7 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
             value = "SELECT * FROM tasks t WHERE t.dateTo < ?1",
             nativeQuery=true)
     List<Task> findOverdue(Date overdue);
+
     /**
      * Metoda zwraca usuwa obiekt wybranego zadania z bazy danych
      * @param id wybrany dokument

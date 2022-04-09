@@ -40,6 +40,8 @@ public class TaskService {
     public List<Task> findDone(Boolean done) {
         return taskRepository.findDone(done);
     }
+
+
     /**
      * Metoda zwraca zadania nieukończone
      **/
@@ -47,6 +49,8 @@ public class TaskService {
         Date today = new Date(Calendar.getInstance().getTime().getTime());
         return taskRepository.findOverdue(today);
     }
+
+
     /**
      * Metoda zwraca zadania które należy wykonać w najbliższych 7 dniach
      **/
@@ -65,6 +69,8 @@ public class TaskService {
     public Task createTask(Task task) {
         return taskRepository.save(task);
     }
+
+
     /**
      * Metoda aktualizuje zadanie
      * @param task obiekt aktualizowanego zadania
@@ -72,6 +78,8 @@ public class TaskService {
     public Task updateTask(Task task) {
         return taskRepository.save(task);
     }
+
+
     /**
      * Metoda zwraca obiekt wybranego zadania
      * @param id wybranego dokumentu
@@ -80,6 +88,8 @@ public class TaskService {
         return taskRepository.findByIdEquals(id)
                 .orElseThrow(() -> new NoSuchElementException("Cant find task with id: " + id));
     }
+
+
     /**
      * Metoda zwraca usuwa obiekt wybranego zadania z bazy danych
      * @param taskId wybrany dokument

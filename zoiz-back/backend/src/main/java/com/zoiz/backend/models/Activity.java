@@ -28,9 +28,7 @@ public class Activity extends StandardEntity {
     @Column(length=1024)
     private String subject;
 
-    @Lob
-    @Type(type = "org.hibernate.type.TextType")
-    @JsonProperty(access=Access.WRITE_ONLY)
+    @Column(length = 1024)
     private String body;
 
     @Column(length=1024)

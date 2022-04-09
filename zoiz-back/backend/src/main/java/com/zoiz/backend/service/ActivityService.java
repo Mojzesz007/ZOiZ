@@ -22,10 +22,20 @@ public class ActivityService {
         return activityRepository.save(activity);
     }
 
+    /**
+     * Metoda aktualizuje aktualność
+     *
+     * @param activity obiekt aktualizowanej aktualności
+     **/
     public Activity update(Activity activity) {
         return activityRepository.save(activity);
     }
 
+    /**
+     * Metoda usuwa aktualność
+     *
+     * @param id usuwanej aktualnośći
+     **/
     public void delete(Long id) {
         activityRepository.deleteActivityById(id);
     }
