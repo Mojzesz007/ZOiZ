@@ -3,11 +3,9 @@ package com.zoiz.backend.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "users")
-@JsonIgnoreProperties(value = {"fullname"}, allowGetters = true)
 public class User extends StandardEntity {
     
     @Column(name="name")
