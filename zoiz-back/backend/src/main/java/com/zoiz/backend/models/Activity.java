@@ -16,13 +16,13 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @JsonIgnoreProperties(value={"number", "contextNo"}, allowGetters=true)
 public class Activity extends StandardEntity {
 
-    @Column
+    @Column(name="activity_start")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date activityDate=java.sql.Date.valueOf(LocalDate.now());
+    private Date activityStart=java.sql.Date.valueOf(LocalDate.now());
 
     @Column(name="activity_end")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date activity;
+    private Date activityEnd;
 
 
     @Column(length=1024)
@@ -36,7 +36,6 @@ public class Activity extends StandardEntity {
     @Column(length=1024)
     private boolean important;
 
-
     public Date getActivityStart() {
         return activityStart;
     }
@@ -45,12 +44,12 @@ public class Activity extends StandardEntity {
         this.activityStart = activityStart;
     }
 
-    public Date getActivity() {
-        return activity;
+    public Date getActivityEnd() {
+        return activityEnd;
     }
 
-    public void setActivity(Date activity) {
-        this.activity = activity;
+    public void setActivityEnd(Date activityEnd) {
+        this.activityEnd = activityEnd;
     }
 
     public String getSubject() {

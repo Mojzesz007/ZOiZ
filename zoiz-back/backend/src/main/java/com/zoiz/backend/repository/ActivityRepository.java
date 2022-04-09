@@ -29,7 +29,7 @@ public interface ActivityRepository extends JpaRepository<Activity, Integer> {
             nativeQuery=true)
     List<Activity> findByStartAndEndDate(Date startDate, Date endDate);
     /**
-     * Metoda zwraca zadania w zależności od ich statusu
+     * Metoda zwraca aktualności w zależności od ich statusu
      * @param important decyduje o stanie zwróconych aktualności
      **/
     @Query(
