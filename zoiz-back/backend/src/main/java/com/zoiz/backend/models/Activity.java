@@ -13,25 +13,25 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name = "activities")
-@JsonIgnoreProperties(value={"number", "contextNo"}, allowGetters=true)
+@JsonIgnoreProperties(value = {"number", "contextNo"}, allowGetters = true)
 public class Activity extends StandardEntity {
 
-    @Column(name="activity_start")
+    @Column(name = "activity_start")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date activityStart=java.sql.Date.valueOf(LocalDate.now());
+    private Date activityStart = java.sql.Date.valueOf(LocalDate.now());
 
-    @Column(name="activity_end")
+    @Column(name = "activity_end")
     @Temporal(TemporalType.TIMESTAMP)
     private Date activityEnd;
 
 
-    @Column(length=1024)
+    @Column(length = 1024)
     private String subject;
 
     @Column(length = 1024)
     private String body;
 
-    @Column(length=1024)
+    @Column(length = 1024)
     private boolean important;
 
     public Date getActivityStart() {

@@ -7,29 +7,29 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User extends StandardEntity {
-    
-    @Column(name="name")
+
+    @Column(name = "name")
     private String name;
 
-    @Column(name="surname")
+    @Column(name = "surname")
     private String surname;
 
-    @Column(name="initials")
+    @Column(name = "initials")
     private String initials;
-    
-    @Column(name="login")
+
+    @Column(name = "login")
     private String login;
-  
-    @Column(name="password")
+
+    @Column(name = "password")
     private String password;
 
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
-    @Column(name="phone")
+    @Column(name = "phone")
     private String phone;
 
-    @Column(name="enabled")
+    @Column(name = "enabled")
     private Boolean enabled;
 
     public String getName() {

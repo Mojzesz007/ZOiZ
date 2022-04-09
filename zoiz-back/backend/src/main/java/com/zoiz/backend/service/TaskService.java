@@ -19,22 +19,29 @@ public class TaskService {
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
+
     /**
      * Metoda zwraca wszystkie zadania
      **/
     public List<Task> findAll() {
         return taskRepository.findAll();
     }
+
+
     /**
      * Metoda zwraca zadania pomiędzy podanymi datami
+     *
      * @param start data początkowa
-     * @param end data końcowa
+     * @param end   data końcowa
      **/
     public List<Task> findByStartDateAndEndDate(Date start, Date end) {
         return taskRepository.findByStartAndEndDate(start, end);
     }
+
+
     /**
      * Metoda zwraca zadania w zależności od ich stanu
+     *
      * @param done data od którego dnia
      **/
     public List<Task> findDone(Boolean done) {
@@ -62,8 +69,10 @@ public class TaskService {
         return taskRepository.findByStartAndEndDate(today, inSevenDays);
     }
 
+
     /**
      * Metoda tworzy zadanie
+     *
      * @param task obiekt dodawanego zadania !BEZ ! ID!
      **/
     public Task createTask(Task task) {
@@ -73,6 +82,7 @@ public class TaskService {
 
     /**
      * Metoda aktualizuje zadanie
+     *
      * @param task obiekt aktualizowanego zadania
      **/
     public Task updateTask(Task task) {
@@ -82,16 +92,18 @@ public class TaskService {
 
     /**
      * Metoda zwraca obiekt wybranego zadania
+     *
      * @param id wybranego dokumentu
      **/
-    public Task findById(Long id){
+    public Task findById(Long id) {
         return taskRepository.findByIdEquals(id)
                 .orElseThrow(() -> new NoSuchElementException("Cant find task with id: " + id));
     }
 
 
     /**
-     * Metoda zwraca usuwa obiekt wybranego zadania z bazy danych
+     * Metoda usuwa obiekt wybranego zadania z bazy danych
+     *
      * @param taskId wybrany dokument
      **/
     @Transactional

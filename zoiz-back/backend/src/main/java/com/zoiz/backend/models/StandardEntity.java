@@ -11,13 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 
 @MappedSuperclass
-@JsonIgnoreProperties(value={
+@JsonIgnoreProperties(value = {
         "entityType",
         "createdAt",
         "updatedAt",
         "contextable",
         "entityDescription"
-}, allowGetters=true)
+}, allowGetters = true)
 public abstract class StandardEntity implements Serializable {
 
     @Id
@@ -29,17 +29,17 @@ public abstract class StandardEntity implements Serializable {
     @Column(name = "version")
     private int version;
 
-    @JsonProperty(access=Access.READ_ONLY)
-    @Column(name="created_at")
+    @JsonProperty(access = Access.READ_ONLY)
+    @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @JsonProperty(access=Access.READ_ONLY)
-    @Column(name="updated_at")
+    @JsonProperty(access = Access.READ_ONLY)
+    @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private boolean draft = true;
 
     public Long getId() {

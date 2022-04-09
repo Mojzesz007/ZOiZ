@@ -14,10 +14,18 @@ public class ActivityService {
         this.activityRepository = activityRepository;
     }
 
+    /**
+     * Metoda zwraca wszystkie aktualności
+     **/
     public List<Activity> findAll() {
         return activityRepository.findAll();
     }
 
+    /**
+     * Metoda tworzy aktualność
+     *
+     * @param activity obiekt tworzonej aktualności
+     **/
     public Activity create(Activity activity) {
         return activityRepository.save(activity);
     }
