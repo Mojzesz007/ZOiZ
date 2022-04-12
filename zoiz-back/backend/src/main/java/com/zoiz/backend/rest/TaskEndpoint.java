@@ -29,34 +29,42 @@ public class TaskEndpoint {
     @ResponseBody
     ResponseEntity<List<Task>> getTasksByStartAndEndDate(
             @RequestParam("start") Date start,
-            @RequestParam("end") Date end) {
+            @RequestParam("end") Date end,
+            @RequestParam("id") Long id
+            ) {
         return new ResponseEntity<>(
-                taskService.findByStartDateAndEndDate(start, end),
+                taskService.findByStartDateAndEndDate(start, end,id),
                 HttpStatus.OK);
     }
 
     @GetMapping("/done")
     @ResponseBody
     ResponseEntity<List<Task>> getDoneTasks(
-            @RequestParam("done") Boolean done) {
+            @RequestParam("done") Boolean done,
+            @RequestParam("id") Long id
+    ) {
         return new ResponseEntity<>(
-                taskService.findDone(done),
+                taskService.findDone(done,id),
                 HttpStatus.OK);
     }
 
     @GetMapping("/overdue")
     @ResponseBody
-    ResponseEntity<List<Task>> getOverdueTasks() {
+    ResponseEntity<List<Task>> getOverdueTasks(
+            @RequestParam("id") Long id
+    ) {
         return new ResponseEntity<>(
-                taskService.findOverdue(),
+                taskService.findOverdue(id),
                 HttpStatus.OK);
     }
 
     @GetMapping("/insevendays")
     @ResponseBody
-    ResponseEntity<List<Task>> getInSevendaysTasks() {
+    ResponseEntity<List<Task>> getInSevendaysTasks(
+            @RequestParam("id") Long id
+    ) {
         return new ResponseEntity<>(
-                taskService.findInSevenDays(),
+                taskService.findInSevenDays(id),
                 HttpStatus.OK);
     }
 

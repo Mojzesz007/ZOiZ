@@ -22,31 +22,34 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
      *
      * @param startDate data początkowa
      * @param endDate   data końcowa
+     * @param id id uzytkownika ktrórego te dane dotyczą
      **/
     @Query(
-            value = "SELECT * FROM tasks t WHERE t.date_from > ?1 AND t.date_to < ?2",
+            value = "SELECT * FROM tasks t WHERE t.date_from > ?1 AND t.date_to < ?2 AND t.USER_ID =?3",
             nativeQuery = true)
-    List<Task> findByStartAndEndDate(Date startDate, Date endDate);
+    List<Task> findByStartAndEndDate(Date startDate, Date endDate, Long id);
 
     /**
      * Metoda zwraca zadania w zależności od ich statusu
      *
      * @param done decyduje o stanie zwróconych zadań
+     * @param id id uzytkownika ktrórego te dane dotyczą
      **/
     @Query(
-            value = "SELECT * FROM tasks t WHERE t.done = ?1",
+            value = "SELECT * FROM tasks t WHERE t.done = ?1 AND t.USER_ID =?2",
             nativeQuery = true)
-    List<Task> findDone(Boolean done);
+    List<Task> findDone(Boolean done, Long id);
 
     /**
      * Metoda zwraca zadania nieukończone do podanego dnia
      *
      * @param overdue data od którego dnia
+     * @param id id uzytkownika ktrórego te dane dotyczą
      **/
     @Query(
-            value = "SELECT * FROM tasks t WHERE t.dateTo < ?1",
+            value = "SELECT * FROM tasks t WHERE t.dateTo < ?1 AND t.USER_ID=?2",
             nativeQuery = true)
-    List<Task> findOverdue(Date overdue);
+    List<Task> findOverdue(Date overdue, Long id);
 
     /**
      * Metoda zwraca usuwa obiekt wybranego zadania z bazy danych

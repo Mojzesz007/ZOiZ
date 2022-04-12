@@ -10,9 +10,4 @@ export class AppService {
 
   constructor(private _http: HttpClient) { }
 
-  getHello(): Observable<string> {
-    return this._http.get<string>(
-      `${environment.api.url}/hello`
-      );
-  }
 }

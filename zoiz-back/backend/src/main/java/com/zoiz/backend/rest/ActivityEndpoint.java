@@ -1,11 +1,13 @@
 package com.zoiz.backend.rest;
 
 import com.zoiz.backend.models.Activity;
+import com.zoiz.backend.models.Task;
 import com.zoiz.backend.service.ActivityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController

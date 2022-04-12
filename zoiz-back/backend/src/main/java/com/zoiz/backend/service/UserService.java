@@ -1,10 +1,17 @@
 package com.zoiz.backend.service;
 
+import com.zoiz.backend.models.Task;
 import com.zoiz.backend.models.User;
 import com.zoiz.backend.repository.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -51,6 +58,10 @@ public class UserService {
                 .orElseThrow(() -> new NoSuchElementException("Cant find user with id: " + id));
     }
 
+    public User login(String login, String password) {
+        return userRepository.loginUser(login,password);
+    }
+
     /**
      * Metoda usuwa obiekt wybranego użytkownika z bazy danych
      *
@@ -60,4 +71,5 @@ public class UserService {
     public void deleteUser(long userId) {
         userRepository.deleteUserById(userId);
     }
+
 }

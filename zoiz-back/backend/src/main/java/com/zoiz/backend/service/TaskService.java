@@ -33,9 +33,10 @@ public class TaskService {
      *
      * @param start data początkowa
      * @param end   data końcowa
+     * @param id  uzytkownika ktrórego te dane dotyczą
      **/
-    public List<Task> findByStartDateAndEndDate(Date start, Date end) {
-        return taskRepository.findByStartAndEndDate(start, end);
+    public List<Task> findByStartDateAndEndDate(Date start, Date end, Long id) {
+        return taskRepository.findByStartAndEndDate(start, end,id);
     }
 
 
@@ -43,30 +44,33 @@ public class TaskService {
      * Metoda zwraca zadania w zależności od ich stanu
      *
      * @param done data od którego dnia
+     * @param id  uzytkownika ktrórego te dane dotyczą
      **/
-    public List<Task> findDone(Boolean done) {
-        return taskRepository.findDone(done);
+    public List<Task> findDone(Boolean done, Long id) {
+        return taskRepository.findDone(done,id);
     }
 
 
     /**
      * Metoda zwraca zadania nieukończone
+     *  @param id uzytkownika ktrórego te dane dotyczą
      **/
-    public List<Task> findOverdue() {
+    public List<Task> findOverdue(Long id) {
         Date today = new Date(Calendar.getInstance().getTime().getTime());
-        return taskRepository.findOverdue(today);
+        return taskRepository.findOverdue(today,id);
     }
 
 
     /**
      * Metoda zwraca zadania które należy wykonać w najbliższych 7 dniach
+     *  @param id  uzytkownika ktrórego te dane dotyczą
      **/
-    public List<Task> findInSevenDays() {
+    public List<Task> findInSevenDays(Long id) {
         Date today = new Date(Calendar.getInstance().getTime().getTime());
         LocalDate week = today.toLocalDate();
         week = week.plusDays(7);
         Date inSevenDays = new Date(week.toEpochDay());
-        return taskRepository.findByStartAndEndDate(today, inSevenDays);
+        return taskRepository.findByStartAndEndDate(today, inSevenDays,id);
     }
 
 
