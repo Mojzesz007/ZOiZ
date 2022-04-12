@@ -7,20 +7,12 @@ import { LoginComponent } from "./login/login/login.component";
 export const routes: Route[] = [
     {
         path     : '',
-        component: AppComponent,
-        children : [
-            {
-                path     : 'login',
-                component: LoginComponent,
-                
-            },
-            {
-                path     : 'dashboard',
-                component: DashboardComponent,
-                canActivate: [AppGuard],
-            },
-            
-        ]
-    }
+        component: DashboardComponent,
+        canActivate: [AppGuard],
+    },
+    {
+        path     : 'login',
+        component: LoginComponent,
+    },
 ];
 
