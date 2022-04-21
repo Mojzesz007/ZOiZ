@@ -13,7 +13,7 @@ export class AppGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      if (localStorage.getItem('user') !== 'logged') {
+      if (!localStorage.getItem('user')) {
         
         this.router.navigateByUrl('/login');
         return false;

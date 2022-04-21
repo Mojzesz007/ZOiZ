@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit {
 
   
   loginForm = new FormGroup({
-    login: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
+    login: new FormControl('alamakota', Validators.required),
+    password: new FormControl('123', Validators.required)
   })
   loginFailed: boolean = false;
 
@@ -35,7 +35,7 @@ console.log(this.loginForm.value);
       ).subscribe({
         next: result => {
           if (result) {
-            localStorage.setItem('user', 'logged');
+            localStorage.setItem('user', JSON.stringify(result));
             this.loginFailed = false;
             this._router.navigate(['/dashboard']);
           } else {

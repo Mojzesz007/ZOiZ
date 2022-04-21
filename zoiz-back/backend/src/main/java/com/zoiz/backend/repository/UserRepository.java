@@ -32,7 +32,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * @param password
      **/
     @Query(
-            value = "SELECT * FROM users u WHERE u.login == ?1 AND u.password == ?2",
+            value = "SELECT * FROM users u WHERE u.login = ?1 AND u.password = ?2",
             nativeQuery = true)
     User loginUser(String login, String password);
 }
