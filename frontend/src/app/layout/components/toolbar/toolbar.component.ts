@@ -8,6 +8,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
+import { User } from 'app/models/user.types';
 
 @Component({
     selector     : 'toolbar',
@@ -25,6 +26,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
     navigation: any;
     selectedLanguage: any;
     userStatusOptions: any[];
+
+    user: User;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -110,6 +113,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, {id: this._translateService.currentLang});
+
+        this.user = JSON.parse(localStorage.getItem('user'));
     }
 
     /**
