@@ -2,11 +2,11 @@
 <ng-container *ngIf="!fuseConfig.layout.sidepanel.hidden && fuseConfig.layout.sidepanel.position === 'left'">
 
     <!-- CHAT PANEL -->
-    <fuse-sidebar name="chatPanel" position="left" class="chat-panel left-chat-panel"
+    <!-- <fuse-sidebar name="chatPanel" position="left" class="chat-panel left-chat-panel"
                   [folded]="true" [foldedWidth]="70" [foldedAutoTriggerOnHover]="false"
                   lockedOpen="gt-md">
         <chat-panel></chat-panel>
-    </fuse-sidebar>
+    </fuse-sidebar> -->
     <!-- / CHAT PANEL -->
 
 </ng-container>
@@ -42,8 +42,7 @@
 
         <div id="container-2" class="container">
 
-            <div id="container-3" class="container" fusePerfectScrollbar
-                 [fusePerfectScrollbarOptions]="{suppressScrollX: true, updateOnRouteChange : true}">
+            <div id="container-3" class="container" fusePerfectScrollbar [fusePerfectScrollbarOptions]="{suppressScrollX: true, updateOnRouteChange : true}">
 
                 <!-- CONTENT -->
                 <content></content>
@@ -73,11 +72,9 @@
 <ng-container *ngIf="!fuseConfig.layout.sidepanel.hidden && fuseConfig.layout.sidepanel.position === 'right'">
 
     <!-- CHAT PANEL -->
-    <fuse-sidebar name="chatPanel" position="right" class="chat-panel right-chat-panel"
-                  [folded]="true" [foldedWidth]="70" [foldedAutoTriggerOnHover]="false"
-                  lockedOpen="gt-md">
+    <!-- <fuse-sidebar name="chatPanel" position="right" class="chat-panel right-chat-panel" [folded]="true" [foldedWidth]="70" [foldedAutoTriggerOnHover]="false" lockedOpen="gt-md">
         <chat-panel></chat-panel>
-    </fuse-sidebar>
+    </fuse-sidebar> -->
     <!-- / CHAT PANEL -->
 
 </ng-container>
@@ -95,34 +92,28 @@
 
 <!-- TOOLBAR -->
 <ng-template #toolbar>
-    <toolbar *ngIf="!fuseConfig.layout.toolbar.hidden"
-             [ngClass]="fuseConfig.layout.toolbar.customBackgroundColor === true ? fuseConfig.layout.toolbar.position + ' ' + fuseConfig.layout.toolbar.background : fuseConfig.layout.toolbar.position">
+    <toolbar *ngIf="!fuseConfig.layout.toolbar.hidden" [ngClass]="fuseConfig.layout.toolbar.customBackgroundColor === true ? fuseConfig.layout.toolbar.position + ' ' + fuseConfig.layout.toolbar.background : fuseConfig.layout.toolbar.position">
     </toolbar>
 </ng-template>
 <!-- / TOOLBAR -->
 
 <!-- FOOTER -->
 <ng-template #footer>
-    <footer *ngIf="!fuseConfig.layout.footer.hidden"
-            [ngClass]="fuseConfig.layout.footer.customBackgroundColor === true ? fuseConfig.layout.footer.position + ' ' + fuseConfig.layout.footer.background : fuseConfig.layout.footer.position">
+    <footer *ngIf="!fuseConfig.layout.footer.hidden" [ngClass]="fuseConfig.layout.footer.customBackgroundColor === true ? fuseConfig.layout.footer.position + ' ' + fuseConfig.layout.footer.background : fuseConfig.layout.footer.position">
     </footer>
 </ng-template>
 <!-- / FOOTER -->
 
 <!-- TOP NAVBAR -->
 <ng-template #topNavbar>
-    <navbar variant="horizontal-style-1"
-            class="top-navbar" fxHide fxShow.gt-md
-            *ngIf="!fuseConfig.layout.navbar.hidden">
+    <navbar variant="horizontal-style-1" class="top-navbar" fxHide fxShow.gt-md *ngIf="!fuseConfig.layout.navbar.hidden">
     </navbar>
 </ng-template>
 <!-- / TOP NAVBAR -->
 
 <!-- LEFT NAVBAR -->
 <ng-template #leftNavbar>
-    <fuse-sidebar name="navbar" class="navbar-fuse-sidebar"
-                  [folded]="fuseConfig.layout.navbar.folded"
-                  *ngIf="!fuseConfig.layout.navbar.hidden">
+    <fuse-sidebar name="navbar" class="navbar-fuse-sidebar" [folded]="fuseConfig.layout.navbar.folded" *ngIf="!fuseConfig.layout.navbar.hidden">
         <navbar [variant]="fuseConfig.layout.navbar.variant" class="left-navbar"></navbar>
     </fuse-sidebar>
 </ng-template>

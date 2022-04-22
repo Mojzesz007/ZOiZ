@@ -8,15 +8,15 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between start">
 
-                <span class="mat-display-1 my-0 my-sm-24 welcome-message" [@animate]="{value:'*',params:{x:'50px'}}">Welcome back, Charlie!
+                <span class="mat-display-1 my-0 my-sm-24 welcome-message" [@animate]="{value:'*',params:{x:'50px'}}">Welcome back, {{user.name}}!
                 </span>
 
-                <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('project-dashboard-right-sidebar-1')">
+                <!-- <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('project-dashboard-right-sidebar-1')">
                     <mat-icon>menu</mat-icon>
-                </button>
+                </button> -->
             </div>
 
-            <div fxLayout="row">
+            <!-- <div fxLayout="row">
 
                 <div class="selected-project">{{selectedProject.name}}</div>
 
@@ -29,7 +29,7 @@
                         <span>{{project.name}}</span>
                     </button>
                 </mat-menu>
-            </div>
+            </div> -->
         </div>
         <!-- / HEADER -->
 
@@ -516,101 +516,7 @@
 
                 </mat-tab>
 
-                <mat-tab label="Team Members">
 
-                    <!-- WIDGET GROUP -->
-                    <div class="widget-group" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom [@animateStagger]="{value:'50'}">
-
-                        <!-- WIDGET 11 -->
-                        <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="row" fxFlex="100">
-
-                            <!-- Front -->
-                            <div class="fuse-widget-front">
-
-                                <div class="p-24 mb-8 border-bottom" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <div class="h2">{{widgets.widget11.title}}</div>
-                                    <div class="text-boxed accent m-0">
-                                        {{widgets.widget11.table.rows.length}} members
-                                    </div>
-                                </div>
-
-                                <mat-table #table [dataSource]="widget11.dataSource">
-
-                                    <!-- Avatar Column -->
-                                    <ng-container matColumnDef="avatar">
-                                        <mat-header-cell fxFlex="96px" *matHeaderCellDef></mat-header-cell>
-                                        <mat-cell fxFlex="96px" *matCellDef="let contact">
-                                            <img class="avatar" *ngIf="contact.avatar" [alt]="contact.name" [src]="contact.avatar" />
-                                        </mat-cell>
-                                    </ng-container>
-
-                                    <!-- Name Column -->
-                                    <ng-container matColumnDef="name">
-                                        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-                                        <mat-cell *matCellDef="let contact">
-                                            <p class="text-truncate font-weight-600">{{contact.name}} {{contact.lastName}}
-                                            </p>
-                                        </mat-cell>
-                                    </ng-container>
-
-                                    <!-- Position Column -->
-                                    <ng-container matColumnDef="position">
-                                        <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>Position
-                                        </mat-header-cell>
-                                        <mat-cell *matCellDef="let contact" fxHide fxShow.gt-sm>
-                                            <p class="position text-truncate">
-                                                {{contact.position}}
-                                            </p>
-                                        </mat-cell>
-                                    </ng-container>
-
-                                    <!-- Office Column -->
-                                    <ng-container matColumnDef="office">
-                                        <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>Office
-                                        </mat-header-cell>
-                                        <mat-cell *matCellDef="let contact" fxHide fxShow.gt-md>
-                                            <p class="office text-truncate">
-                                                {{contact.office}}
-                                            </p>
-                                        </mat-cell>
-                                    </ng-container>
-
-                                    <!-- Email Column -->
-                                    <ng-container matColumnDef="email">
-                                        <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>Email
-                                        </mat-header-cell>
-                                        <mat-cell *matCellDef="let contact" fxHide fxShow.gt-sm>
-                                            <p class="email text-truncate">
-                                                {{contact.email}}
-                                            </p>
-                                        </mat-cell>
-                                    </ng-container>
-
-                                    <!-- Phone Column -->
-                                    <ng-container matColumnDef="phone">
-                                        <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>Phone
-                                        </mat-header-cell>
-                                        <mat-cell *matCellDef="let contact" fxHide fxShow.gt-md>
-                                            <p class="phone text-truncate">
-                                                {{contact.phone}}
-                                            </p>
-                                        </mat-cell>
-                                    </ng-container>
-
-                                    <mat-header-row *matHeaderRowDef="widgets.widget11.table.columns"></mat-header-row>
-                                    <mat-row *matRowDef="let contact; columns: widgets.widget11.table.columns;">
-                                    </mat-row>
-                                </mat-table>
-                            </div>
-                            <!-- / Front -->
-
-                        </fuse-widget>
-                        <!-- / WIDGET 11 -->
-
-                    </div>
-                    <!-- / WIDGET GROUP -->
-
-                </mat-tab>
             </mat-tab-group>
 
         </div>
@@ -671,87 +577,6 @@
                 </fuse-widget>
                 <!-- / NOW WIDGET -->
 
-                <!-- WEATHER WIDGET -->
-                <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}">
-
-                    <!-- Front -->
-                    <div class="fuse-widget-front">
-
-                        <div class="pl-16 pr-8 py-16" fxLayout="row" fxLayoutAlign="space-between center">
-
-                            <div class="h4" fxLayout="row" fxLayoutAlign="start center">
-                                <mat-icon class="secondary-text mr-8">place</mat-icon>
-                                {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].name}}
-                            </div>
-
-                            <div>
-                                <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="more">
-                                    <mat-icon class="secondary-text">more_vert</mat-icon>
-                                </button>
-
-                                <mat-menu #moreMenu="matMenu">
-                                    <button mat-menu-item aria-label="Flip widget">
-                                        Details
-                                    </button>
-                                </mat-menu>
-                            </div>
-                        </div>
-
-                        <div class="p-16 pb-32" fxLayout="column" fxLayoutAlign="center center">
-
-                            <div fxLayout="row" fxLayoutAlign="center center">
-                                <mat-icon fontSet="meteocons" [fontIcon]="widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].icon" class="icon s-40 secondary-text mr-16"></mat-icon>
-                                <span class="mat-display-2 m-0 font-weight-300 secondary-text">
-                                    {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].temp[widgets.weatherWidget.tempUnit]}}
-                                </span>
-                                <span class="font-size-48 font-weight-300 hint-text text-super ml-8">°</span>
-                                <span class="mat-display-2 mb-0 font-weight-300 hint-text ng-binding">C</span>
-                            </div>
-                        </div>
-
-                        <div class="p-16 by" fxLayout="row" fxLayoutAlign="space-between center">
-                            <div fxLayout="row" fxLayoutAlign="start center">
-                                <mat-icon fontSet="meteocons" fontIcon="icon-windy" class="s-16 secondary-text mr-8"></mat-icon>
-                                <span>
-                                    {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].windSpeed[widgets.weatherWidget.speedUnit]}}
-                                </span>
-                                <span class="secondary-text ml-5">{{widgets.weatherWidget.speedUnit}}</span>
-                            </div>
-
-                            <div fxLayout="row" fxLayoutAlign="start center">
-                                <mat-icon fontSet="meteocons" fontIcon="icon-compass" class="s-16 secondary-text mr-8"></mat-icon>
-                                <span>
-                                    {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].windDirection}}
-                                </span>
-                            </div>
-
-                            <div fxLayout="row" fxLayoutAlign="start center">
-                                <mat-icon fontSet="meteocons" fontIcon="icon-rainy" class="s-16 secondary-text mr-8"></mat-icon>
-                                <span>
-                                    {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].rainProbability}}
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="py-16">
-                            <div class="py-16 px-24" fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let day of widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].next3Days">
-                                <span class="h4">{{day.name}}</span>
-                                <div fxLayout="row" fxLayoutAlign="start center">
-                                    <mat-icon fontSet="meteocons" [fontIcon]="day.icon" class="secondary-text mr-16"></mat-icon>
-                                    <span class="h2">{{day.temp[widgets.weatherWidget.tempUnit]}}</span>
-                                    <span class="h2 font-weight-300 secondary-text text-super">&deg;</span>
-                                    <span class="h2 font-weight-300 secondary-text">
-                                        {{widgets.weatherWidget.tempUnit}}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- / Front -->
-
-                </fuse-widget>
-                <!-- / WEATHER WIDGET -->
 
             </div>
             <!-- / WIDGET GROUP -->

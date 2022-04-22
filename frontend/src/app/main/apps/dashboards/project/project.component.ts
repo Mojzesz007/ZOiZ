@@ -7,6 +7,7 @@ import { fuseAnimations } from '@fuse/animations';
 
 import { ProjectDashboardService } from 'app/main/apps/dashboards/project/project.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { User } from 'app/models/user.types';
 
 @Component({
     selector     : 'project-dashboard',
@@ -29,6 +30,20 @@ export class ProjectDashboardComponent implements OnInit
     widget11: any = {};
 
     dateNow = Date.now();
+
+    user: User = {
+        name: '',
+        id: 0,
+        version: 0,
+        createdAt: undefined,
+        draft: false,
+        surname: '',
+        login: '',
+        password: '',
+        email: '',
+        phone: '',
+        enabled: false
+    };
 
     /**
      * Constructor
@@ -163,6 +178,8 @@ export class ProjectDashboardComponent implements OnInit
         this.widget11.onContactsChanged = new BehaviorSubject({});
         this.widget11.onContactsChanged.next(this.widgets.widget11.table.rows);
         this.widget11.dataSource = new FilesDataSource(this.widget11);
+
+        this.user = JSON.parse(localStorage.getItem('user'));
     }
 
     // -----------------------------------------------------------------------------------------------------
