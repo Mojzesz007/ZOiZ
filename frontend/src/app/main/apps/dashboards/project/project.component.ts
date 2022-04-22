@@ -8,6 +8,8 @@ import { fuseAnimations } from '@fuse/animations';
 import { ProjectDashboardService } from 'app/main/apps/dashboards/project/project.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { User } from 'app/models/user.types';
+import { TaskService } from 'app/services/task.service';
+import { Task } from 'app/models/task.types';
 
 @Component({
     selector     : 'project-dashboard',
@@ -53,7 +55,8 @@ export class ProjectDashboardComponent implements OnInit
      */
     constructor(
         private _fuseSidebarService: FuseSidebarService,
-        private _projectDashboardService: ProjectDashboardService
+        private _projectDashboardService: ProjectDashboardService,
+        private _taskService: TaskService,
     )
     {
         /**
@@ -171,7 +174,15 @@ export class ProjectDashboardComponent implements OnInit
         this.projects = this._projectDashboardService.projects;
         this.selectedProject = this.projects[0];
         this.widgets = this._projectDashboardService.widgets;
+        console.log(this.widgets);
 
+        // Get tasks from database and display count
+        this._taskService.getAllTasks()
+        .subscribe({
+            next: (respose: Task[]) => this.widgets.widget1.data.count.DT = respose.length
+        })
+        
+        
         /**
          * Widget 11
          */
