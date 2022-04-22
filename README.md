@@ -13,10 +13,23 @@ https://www.pgadmin.org/
 ### In pgAdmin add new serwer: 
 ![image](https://user-images.githubusercontent.com/72619211/160450424-8f8da34d-0bc6-4c9a-8916-5c76affc6110.png)
 ### Running Backend 
-If you run spring server in project in _zoiz/zoiz-backend/backend_ (`src/main/java/BackendAplication.java`) you should see:
-![image](https://user-images.githubusercontent.com/72619211/160449790-4ff5038e-0028-4819-9ae2-38f612655eb4.png)
+run spring server in project in _zoiz/zoiz-backend/backend_ (`src/main/java/BackendAplication.java`) 
 ### Running FrontEnd 
-Go to _zoiz/zoiz-front_ and run `npm i` and then `ng serve`
+Go to _zoiz/frontend_ and run `npm i` and then `ng serve`
+
+#### FuseTheme navigation
+Navigation: 
+- frontend/src/app/navigation/navigation.ts (left sidebar elements)
+- frontend/src/app/app.module.ts (Routing)
+
+Layout:
+- frontend/src/app/layout/verical/layout-1
+- frontend/src/app/layout/horizontal/layout-1
+
+Dashboard (content):
+- frontend/src/app/main/apps/dahboards/project
+
+I started implementing stuff in _http://localhost:4200/apps/dashboards/project_
 
 ### DataBase configuration
 Go to _src/main/resources/application.properties_ and setup your server username and password
