@@ -22,6 +22,15 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
+                    <mat-label>Surname</mat-label>
+                    <input matInput formControlName="surname">
+                    <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                    <mat-error>
+                        Surname is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
                     <input matInput formControlName="email">
                     <mat-icon matSuffix class="secondary-text">mail</mat-icon>
@@ -55,15 +64,14 @@
                     </mat-error>
                 </mat-form-field>
 
-                <div class="terms" fxLayout="row" fxLayoutAlign="center center">
+                <!-- <div class="terms" fxLayout="row" fxLayoutAlign="center center">
                     <mat-checkbox name="terms" aria-label="I read and accept" required>
                         <span>I read and accept</span>
                     </mat-checkbox>
                     <a href="#">terms and conditions</a>
-                </div>
+                </div> -->
 
-                <button mat-raised-button color="accent" class="submit-button" aria-label="CREATE AN ACCOUNT"
-                        [disabled]="registerForm.invalid">
+                <button (click)="registerUser()" mat-raised-button color="accent" class="submit-button" aria-label="CREATE AN ACCOUNT" [disabled]="registerForm.invalid">
                     CREATE AN ACCOUNT
                 </button>
 

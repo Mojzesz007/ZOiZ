@@ -5,6 +5,9 @@ import { takeUntil } from 'rxjs/internal/operators';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { User } from 'app/models/user.types';
 
 @Component({
     selector     : 'register',
@@ -22,7 +25,9 @@ export class RegisterComponent implements OnInit, OnDestroy
 
     constructor(
         private _fuseConfigService: FuseConfigService,
-        private _formBuilder: FormBuilder
+        private _formBuilder: FormBuilder,
+        private _authService: AuthService,
+        private _router: Router
     )
     {
         // Configure the layout
@@ -58,6 +63,7 @@ export class RegisterComponent implements OnInit, OnDestroy
     {
         this.registerForm = this._formBuilder.group({
             name           : ['', Validators.required],
+            surname           : ['', Validators.required],
             email          : ['', [Validators.required, Validators.email]],
             password       : ['', Validators.required],
             passwordConfirm: ['', [Validators.required, confirmPasswordValidator]]
@@ -80,6 +86,21 @@ export class RegisterComponent implements OnInit, OnDestroy
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
+    }
+
+    registerUser(): void {
+        const user = this.registerForm.value;
+        delete user.passwordConfirm;
+        
+        this._authService.register(user)
+        .subscribe({
+            next: (user: User) => {
+                if (user) {
+                    localStorage.setItem('user', JSON.stringify(user));
+                    this._router.navigateByUrl('/apps/dashboards/project')
+                }
+            }
+        });
     }
 }
 
