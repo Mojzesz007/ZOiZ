@@ -1,9 +1,6 @@
-export interface Task {
-    id: number;
-    version: number;
-    createdAt: Date;
-    updatedAt: Date;
-    draft: boolean;
+import { Entity } from "./entity.type";
+
+export interface Task extends Entity {
     dateFrom: Date;
     dateTo: Date;
     subject: string;

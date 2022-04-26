@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import * as shape from 'd3-shape';
 
 import { fuseAnimations } from '@fuse/animations';
@@ -10,6 +10,9 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { User } from 'app/models/user.types';
 import { TaskService } from 'app/services/task.service';
 import { Task } from 'app/models/task.types';
+import { Activity } from 'app/models/activity.types';
+import { ActivityService } from 'app/services/activity.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector     : 'project-dashboard',
@@ -18,10 +21,12 @@ import { Task } from 'app/models/task.types';
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })
-export class ProjectDashboardComponent implements OnInit
+export class ProjectDashboardComponent implements OnInit, OnDestroy
 {
     projects: any[];
     selectedProject: any;
+    activities: Activity[] = [];
+    tasks: Task[];
 
     widgets: any;
     widget5: any = {};
@@ -47,6 +52,8 @@ export class ProjectDashboardComponent implements OnInit
         enabled: false
     };
 
+    private _unsubscribeAll: Subject<any>;
+
     /**
      * Constructor
      *
@@ -57,6 +64,7 @@ export class ProjectDashboardComponent implements OnInit
         private _fuseSidebarService: FuseSidebarService,
         private _projectDashboardService: ProjectDashboardService,
         private _taskService: TaskService,
+        private _activityService: ActivityService,
     )
     {
         /**
@@ -160,6 +168,8 @@ export class ProjectDashboardComponent implements OnInit
             this.dateNow = Date.now();
         }, 1000);
 
+        this._unsubscribeAll = new Subject();
+
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -174,12 +184,12 @@ export class ProjectDashboardComponent implements OnInit
         this.projects = this._projectDashboardService.projects;
         this.selectedProject = this.projects[0];
         this.widgets = this._projectDashboardService.widgets;
-        console.log(this.widgets);
 
         // Get tasks from database and display count
         this._taskService.getAllTasks()
+        .pipe(takeUntil(this._unsubscribeAll))
         .subscribe({
-            next: (respose: Task[]) => this.widgets.widget1.data.count.DT = respose.length
+            next: (respose: Task[]) => this.tasks = respose
         })
         
         
@@ -191,6 +201,13 @@ export class ProjectDashboardComponent implements OnInit
         this.widget11.dataSource = new FilesDataSource(this.widget11);
 
         this.user = JSON.parse(localStorage.getItem('user'));
+
+        this._activityService.getActivities()
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe({
+            next: (response: Activity[]) => this.activities = response
+            
+        })
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -205,6 +222,13 @@ export class ProjectDashboardComponent implements OnInit
     toggleSidebar(name): void
     {
         this._fuseSidebarService.getSidebar(name).toggleOpen();
+    }
+    
+    ngOnDestroy(): void
+    {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
     }
 }
 
@@ -236,5 +260,7 @@ export class FilesDataSource extends DataSource<any>
     disconnect(): void
     {
     }
+
+
 }
 

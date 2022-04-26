@@ -48,23 +48,14 @@
                             <!-- Front -->
                             <div class="fuse-widget-front">
                                 <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <mat-form-field>
-                                        <mat-select class="simplified font-size-16" [(ngModel)]="widgets.widget1.currentRange" aria-label="Change range">
-                                            <mat-option *ngFor="let range of widgets.widget1.ranges | keys" [value]="range.key">
-                                                {{range.value}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                    <button mat-icon-button fuseWidgetToggle aria-label="more">
-                                        <mat-icon>more_vert</mat-icon>
-                                    </button>
+                                    <!-- title -->
                                 </div>
 
                                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                                     <div class="light-blue-fg font-size-72 line-height-72">
-                                        {{widgets.widget1.data.count[widgets.widget1.currentRange]}}
+                                        {{tasks.length}}
                                     </div>
-                                    <div class="h3 secondary-text font-weight-500">{{widgets.widget1.data.label}}
+                                    <div class="h3 secondary-text font-weight-500">TASKS
                                     </div>
                                 </div>
 
@@ -79,17 +70,6 @@
                             </div>
                             <!-- / Front -->
 
-                            <!-- Back -->
-                            <div class="fuse-widget-back p-16 pt-32">
-                                <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button" aria-label="Flip widget">
-                                    <mat-icon class="s-16">close</mat-icon>
-                                </button>
-
-                                <div>
-                                    {{widgets.widget1.detail}}
-                                </div>
-                            </div>
-                            <!-- / Back -->
 
                         </fuse-widget>
                         <!-- / WIDGET 1 -->
@@ -100,18 +80,14 @@
                             <!-- Front -->
                             <div class="fuse-widget-front">
                                 <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <div class="h3">{{widgets.widget2.title}}</div>
-
-                                    <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button" aria-label="more">
-                                        <mat-icon>more_vert</mat-icon>
-                                    </button>
+                                    <!-- title -->
                                 </div>
 
                                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                                     <div class="red-fg font-size-72 line-height-72">
-                                        {{widgets.widget2.data.count}}
+                                        {{activities.length}}
                                     </div>
-                                    <div class="h3 secondary-text font-weight-500">{{widgets.widget2.data.label}}
+                                    <div class="h3 secondary-text font-weight-500">ACTIVITIES
                                     </div>
                                 </div>
 
@@ -124,17 +100,7 @@
                             </div>
                             <!-- / Front -->
 
-                            <!-- Back -->
-                            <div class="fuse-widget-back p-16 pt-32">
-                                <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button" aria-label="Flip widget">
-                                    <mat-icon class="s-16">close</mat-icon>
-                                </button>
 
-                                <div>
-                                    {{widgets.widget2.detail}}
-                                </div>
-                            </div>
-                            <!-- / Back -->
 
                         </fuse-widget>
                         <!-- / WIDGET 2 -->
