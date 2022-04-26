@@ -17,7 +17,9 @@ run spring server in project in _zoiz/zoiz-backend/backend_ (`src/main/java/Back
 ### Running FrontEnd 
 Go to _zoiz/frontend_ and run `npm i` and then `ng serve`
 
-#### FuseTheme navigation
+#### FuseTheme
+To login, you need to create user in database or just use _register_ option
+
 Navigation: 
 - frontend/src/app/navigation/navigation.ts (left sidebar elements)
 - frontend/src/app/app.module.ts (Routing)
