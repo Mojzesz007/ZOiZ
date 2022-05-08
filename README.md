@@ -28,6 +28,12 @@ Dashboard (content):
 
 I started implementing stuff in _http://localhost:4200/apps/dashboards/project_
 
+### E2E Tests
+1. run `npm start ng serve`
+2. in another terminal run Cypress GUI `npm start cypress:open`
+
+Add new tests in _cypress/integration_ folder
+ 
 ### DataBase configuration
 Install PostgreSQL 12 
 
