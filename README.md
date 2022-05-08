@@ -6,12 +6,7 @@ For java backend prefer Intellij IDEA
 
 ### Clone repository
 `git clone https://github.com/Mojzesz007/ZOiZ.git`
-### Install PostgreSQL 12 
-https://www.postgresql.org/download/ 
-### Install pgAdmin 4 desktop 
-https://www.pgadmin.org/
-### In pgAdmin add new serwer: 
-![image](https://user-images.githubusercontent.com/72619211/160450424-8f8da34d-0bc6-4c9a-8916-5c76affc6110.png)
+
 ### Running Backend 
 run spring server in project in _zoiz/zoiz-backend/backend_ (`src/main/java/BackendAplication.java`) 
 ### Running FrontEnd 
@@ -34,6 +29,18 @@ Dashboard (content):
 I started implementing stuff in _http://localhost:4200/apps/dashboards/project_
 
 ### DataBase configuration
+Install PostgreSQL 12 
+
+https://www.postgresql.org/download/ 
+
+Install pgAdmin 4 desktop 
+
+https://www.pgadmin.org/
+
+In pgAdmin add new serwer: 
+
+![image](https://user-images.githubusercontent.com/72619211/160450424-8f8da34d-0bc6-4c9a-8916-5c76affc6110.png)
+
 Go to _src/main/resources/application.properties_ and setup your server username and password
 
 #### Generate DB schema from SQL script
