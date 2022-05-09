@@ -6,7 +6,7 @@ export const environment = {
     production: false,
     hmr       : false,
     api:{
-        url: 'http://localhost:8080'
+        url: process.env.PROXY_API || 'http://localhost:8080'
     }
 };
 
