@@ -6,7 +6,7 @@ https://milanwittpohl.com/projects/tutorials/Full-Stack-Web-App/dockerizing-our-
 2. w najwyższym folderze projektu uruchom `docker build --file=zoiz-back/backend.dockerfile  -t zoiz-back .` a następnie `docker build --file=frontend/frontend.dockerfile -t
  zoiz-front .`
 3. Uruchom `docker-compose -f app-compose.yaml up`
-4. Aplikacja uruchomi się w http://localhost:4200/, PgAdmin będzie dostępny pod adresem http://localhost:80 (login i hasło znajdują się w pliku app-compose.yaml)
+4. Aplikacja uruchomi się w http://localhost:4200/, PgAdmin będzie dostępny pod adresem http://localhost:80 (login i hasło znajdują się w pliku app-compose.yaml, a adres serwera jest nazwą kontenera w którym uruchomiony jest postgres)
 
 # Dockerfile - tworzenie obrazu
 
