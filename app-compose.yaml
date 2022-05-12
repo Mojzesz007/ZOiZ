@@ -1,0 +1,29 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:12
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=zoiz
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 80:80
+    environment:
+      - "PGADMIN_DEFAULT_EMAIL=user@domain.com"
+      - "PGADMIN_DEFAULT_PASSWORD=SuperSecret"
+  zoiz-front:
+    image: zoiz-front:latest
+    environment:
+      PORT: 4200
+      PROXY_API: http://zoiz-back:8080/
+    ports:
+      - 4200:4200
+  zoiz-back:
+    image: zoiz-back:latest
+    environment:
+      PORT: 8080
+    ports:
+      - 8080:8080
