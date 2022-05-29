@@ -11,7 +11,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     ports:
-      - 80:80
+      - 81:80
     environment:
       - "PGADMIN_DEFAULT_EMAIL=user@domain.com"
       - "PGADMIN_DEFAULT_PASSWORD=SuperSecret"
@@ -21,7 +21,7 @@ services:
       PORT: 4200
       PROXY_API: http://zoiz-back:8080/
     ports:
-      - 4200:4200
+      - 80:4200
   zoiz-back:
     image: zoiz-back:latest
     depends_on: 
