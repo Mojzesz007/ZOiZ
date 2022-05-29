@@ -24,7 +24,10 @@ services:
       - 4200:4200
   zoiz-back:
     image: zoiz-back:latest
+    depends_on: 
+      - postgres
     environment:
-      PORT: 8080
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/zoiz
+      - PORT=8080
     ports:
       - 8080:8080
