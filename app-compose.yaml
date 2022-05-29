@@ -5,8 +5,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=zoiz
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: zoiz
+      PORT: 5432
   pgadmin:
     image: dpage/pgadmin4
     ports:
