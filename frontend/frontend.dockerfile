@@ -8,6 +8,8 @@ RUN mkdir -p /app
 # The /app directory should act as the main application directory
 WORKDIR /app
 
+COPY frontend/dist/fuse ./dist/fuse
+
 # Copy the app package and package-lock.json file
 COPY frontend/package*.json ./
 
@@ -15,10 +17,10 @@ COPY frontend/package*.json ./
 RUN npm install
 
 # Copy or project directory (locally) in the current directory of our docker image (/app)
-COPY frontend/ .
+# COPY frontend/ .
 
 # Build the app
-RUN npm run build
+# RUN npm run build
 
 # Expose $PORT on container.
 # We use a varibale here as the port is something that can differ on the environment.
@@ -37,4 +39,4 @@ ENV PROXY_API=$PROXY_API
 ENV PROXY_LOGIN=$PROXY_LOGIN
 
 # Start the app
-CMD [ "npm", "start" ]
+CMD [ "npx", "http-server", "dist/fuse", "--port 4200" ]
