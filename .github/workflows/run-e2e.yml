@@ -49,7 +49,3 @@ jobs:
       with:
           start: npm start
           working-directory: frontend
-      
-  
-        
-    
