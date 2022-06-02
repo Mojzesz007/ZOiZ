@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-backend:
+  build-and-test:
 
     runs-on: ubuntu-latest
 
@@ -41,12 +41,8 @@ jobs:
       run: mvn -B package --file zoiz-back/backend/pom.xml
         
     - name: Run Spring app
-      run: java -jar zoiz-back/backend/target/backend-0.0.1-SNAPSHOT.jar
+      run: java -jar zoiz-back/backend/target/backend-0.0.1-SNAPSHOT.jar &
 
-  run-frontend:
-    needs: [build-backend]
-    runs-on: ubuntu-latest
-    steps:
 
     - name: Setup Node.js environment
       uses: actions/setup-node@v3.2.0
@@ -55,12 +51,8 @@ jobs:
       run: |
         cd frontend
         npm install
-        npm start ng serve
+        npm start ng serve &
 
-  run-tests:
-    needs: [build-backend, run-frontend]
-    runs-on: ubuntu-latest
-    steps:
     - name: Cypress.io
       # You may pin to the exact commit or the version.
       # uses: cypress-io/github-action@f06537910911844bce953022f6d643a0f69fd73b
