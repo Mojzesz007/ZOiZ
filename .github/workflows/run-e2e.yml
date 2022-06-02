@@ -44,18 +44,11 @@ jobs:
       run: java -jar zoiz-back/backend/target/backend-0.0.1-SNAPSHOT.jar &
 
 
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v3.2.0
-
-    - name: Build Node app
-      working-directory: frontend
-      run: |
-        npm install
-        npm run start &
-
-    - name: Cypress.io
-      working-directory: frontend
-      run: npm run cypress:run
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+          start: npm start
+          working-directory: frontend
       
   
         
