@@ -48,15 +48,15 @@ jobs:
       uses: actions/setup-node@v3.2.0
 
     - name: Build Node app
+      working-directory: frontend
       run: |
-        cd frontend
         npm install
         npm start ng serve &
 
     - name: Cypress.io
-      # You may pin to the exact commit or the version.
-      # uses: cypress-io/github-action@f06537910911844bce953022f6d643a0f69fd73b
-      uses: cypress-io/github-action@v2.9.7
+      working-directory: frontend
+      run: npm start cypress:run
+      
   
         
     
