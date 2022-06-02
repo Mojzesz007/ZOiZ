@@ -43,9 +43,14 @@ jobs:
     - name: Run Spring app
       run: java -jar zoiz-back/backend/target/backend-0.0.1-SNAPSHOT.jar &
 
+    - name: Build and run node app
+      working-directory: frontend
+      run: |
+        npm install
+        npm run build
+        npx http-server dist/fuse --port 4200
 
     - name: Cypress run
       uses: cypress-io/github-action@v2
       with:
-          start: npm start
           working-directory: frontend
