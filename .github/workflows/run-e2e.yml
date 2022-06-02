@@ -51,11 +51,11 @@ jobs:
       working-directory: frontend
       run: |
         npm install
-        npm start ng serve &
+        npm run start &
 
     - name: Cypress.io
       working-directory: frontend
-      run: npm start cypress:run
+      run: npm run cypress:run
       
   
         
