@@ -48,7 +48,7 @@ jobs:
       run: |
         npm install
         npm run build
-        npx http-server dist/fuse --port 4200
+        npx http-server dist/fuse --port 4200 &
 
     - name: Cypress run
       uses: cypress-io/github-action@v2
