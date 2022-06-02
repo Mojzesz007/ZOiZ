@@ -49,9 +49,11 @@ jobs:
 
     - name: Build Node app
       working-directory: frontend
-      run: |
-        npm install
-        npm run start &
+      run: npm install
+    
+    - name: start Agnular server
+      working-directory: frontend
+      run: npm run start &
 
     - name: Cypress.io
       working-directory: frontend
