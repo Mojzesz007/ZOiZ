@@ -74,8 +74,8 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build --file=zoiz-back -t zoiz-back .
-        docker build --file=frontend -t zoiz-front .
+        docker build --file=zoiz-back/Dockerfile -t zoiz-back .
+        docker build --file=frontend/Dockerfile -t zoiz-front .
         docker push zoiz-back
         docker push zoiz-front
         echo "::set-output name=front-image::zoiz-front"
