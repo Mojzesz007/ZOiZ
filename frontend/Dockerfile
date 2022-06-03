@@ -8,10 +8,10 @@ RUN mkdir -p /app
 # The /app directory should act as the main application directory
 WORKDIR /app
 
-COPY frontend/dist/fuse ./dist/fuse
+COPY dist/fuse ./dist/fuse
 
 # Copy the app package and package-lock.json file
-COPY frontend/package*.json ./
+COPY package*.json ./
 
 # Install node packages
 RUN npm install
