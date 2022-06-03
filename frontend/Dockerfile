@@ -11,7 +11,7 @@ WORKDIR /app
 COPY frontend/dist/fuse ./dist/fuse
 
 # Copy the app package and package-lock.json file
-COPY package*.json ./
+COPY frontend/package*.json ./
 
 # Install node packages
 RUN npm install
