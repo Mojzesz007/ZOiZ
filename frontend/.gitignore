@@ -8,6 +8,10 @@
 # dependencies
 /node_modules
 
+# cypress screenshots and videos
+/cypress/screenshots
+/cypress/videos
+
 # IDEs and editors
 /.idea
 .project

@@ -22,11 +22,27 @@ describe('Invalid email', () => {
   })
 })
 
+describe('User register', () => {
+  it('Should register new user', () => {
+    cy.visit('/');
+    cy.url().should('includes', 'login');
+    cy.get('a[href*="/pages/auth/register"]').click();
+    cy.url().should('includes', 'register');
+    cy.get('[formControlName="name"]').type('Marek');
+    cy.get('[formControlName="surname"]').type('Potoczny');
+    cy.get('[formControlName="email"]').type('marek.potoczny@example.com');
+    cy.get('[formControlName="password"]').type('123');
+    cy.get('[formControlName="passwordConfirm"]').type('123');
+    cy.get('button').click();
+    cy.url().should('includes', 'dashboard');
+  })
+})
+
 describe('Correct login', () => {
   it('Should redirect to dashboard', () => {
     cy.visit('/');
     cy.url().should('includes', 'login');
-    cy.get('[formControlName="email"]').type('alamakota@xxx.com');
+    cy.get('[formControlName="email"]').type('marek.potoczny@example.com');
     cy.get('[formControlName="password"]').type('123');
     cy.get('button').click();
     cy.url().should('includes', 'dashboard');
