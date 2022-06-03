@@ -91,12 +91,12 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build --file=zoiz-back/Dockerfile -t zoiz-back .
-        docker build --file=frontend/Dockerfile -t zoiz-front .
-        docker push zoiz-back
-        docker push zoiz-front
-        echo "::set-output name=front-image::zoiz-front"
-        echo "::set-output name=back-image::zoiz-back"
+        docker build --file=zoiz-back/Dockerfile -t zoiz-back:latest .
+        docker build --file=frontend/Dockerfile -t zoiz-front:latest .
+        docker push zoiz-back:latest
+        docker push zoiz-front:latest
+        echo "::set-output name=front-image::zoiz-front:latest"
+        echo "::set-output name=back-image::zoiz-back:latest"
         
     - name: Fill in the new Front image ID in the Amazon ECS task definition
       id: task-front-def
