@@ -47,14 +47,14 @@
                         <mat-icon>arrow_drop_down</mat-icon>
                     </button>
                     <mat-menu #selectMenu="matMenu">
-                        <button mat-menu-item (click)="selectTodos()">All</button>
-                        <button mat-menu-item (click)="deselectTodos()">None</button>
-                        <button mat-menu-item (click)="selectTodos('read', true)">Read</button>
-                        <button mat-menu-item (click)="selectTodos('read', false)">Unread</button>
-                        <button mat-menu-item (click)="selectTodos('starred', true)">Starred</button>
-                        <button mat-menu-item (click)="selectTodos('starred', false)">Unstarred</button>
-                        <button mat-menu-item (click)="selectTodos('important', true)">Important</button>
-                        <button mat-menu-item (click)="selectTodos('important', false)">Unimportant</button>
+<!--                        <button mat-menu-item (click)="selectTodos()">All</button>-->
+<!--                        <button mat-menu-item (click)="deselectTodos()">None</button>-->
+<!--                        <button mat-menu-item (click)="selectTodos('read', true)">Read</button>-->
+<!--                        <button mat-menu-item (click)="selectTodos('read', false)">Unread</button>-->
+<!--                        <button mat-menu-item (click)="selectTodos('starred', true)">Starred</button>-->
+<!--                        <button mat-menu-item (click)="selectTodos('starred', false)">Unstarred</button>-->
+<!--                        <button mat-menu-item (click)="selectTodos('important', true)">Important</button>-->
+<!--                        <button mat-menu-item (click)="selectTodos('important', false)">Unimportant</button>-->
                     </mat-menu>
 
                     <div class="toolbar-separator" *ngIf="hasSelectedTodos"></div>
@@ -63,9 +63,9 @@
                         <mat-icon class="secondary-text">label</mat-icon>
                     </button>
                     <mat-menu #labelMenu="matMenu">
-                        <button mat-menu-item *ngFor="let tag of tags" (click)="toggleTagOnSelectedTodos(tag.id)">
-                            {{tag.title}}
-                        </button>
+<!--                        <button mat-menu-item *ngFor="let tag of tags" (click)="toggleTagOnSelectedTodos(tag.id)">-->
+<!--                            {{tag.title}}-->
+<!--                        </button>-->
                     </mat-menu>
                 </div>
 

@@ -8,6 +8,8 @@ import { fuseAnimations } from '@fuse/animations';
 
 import { Todo } from 'app/main/apps/todo/todo.model';
 import { TodoService } from 'app/main/apps/todo/todo.service';
+import { Task } from "../../../../models/task.types";
+import {TaskService} from "../../../../services/task.service";
 
 @Component({
     selector     : 'todo-details',
@@ -18,7 +20,7 @@ import { TodoService } from 'app/main/apps/todo/todo.service';
 })
 export class TodoDetailsComponent implements OnInit, OnDestroy
 {
-    todo: Todo;
+    todo: Task;
     tags: any[];
     formType: string;
     todoForm: FormGroup;
@@ -37,7 +39,8 @@ export class TodoDetailsComponent implements OnInit, OnDestroy
      */
     constructor(
         private _todoService: TodoService,
-        private _formBuilder: FormBuilder
+        private _formBuilder: FormBuilder,
+        private taskService: TaskService
     )
     {
         // Set the private defaults
@@ -87,8 +90,23 @@ export class TodoDetailsComponent implements OnInit, OnDestroy
         this._todoService.onNewTodoClicked
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(() => {
-                this.todo = new Todo({});
-                this.todo.id = FuseUtils.generateGUID();
+                this.todo = new class implements Task {
+                    createdAt: Date;
+                    dateFrom: Date;
+                    dateTo: Date;
+                    done: boolean;
+                    draft: boolean;
+                    entityDescription: string;
+                    id: number;
+                    message: string;
+                    parentToken: any;
+                    sendNotification: boolean;
+                    subject: string;
+                    updatedAt: Date;
+                    user: any;
+                    version: number;
+                };
+                this.todo.id = +FuseUtils.generateGUID();
                 this.formType = 'new';
                 this.todoForm = this.createTodoForm();
                 this.focusTitleField();
@@ -129,15 +147,11 @@ export class TodoDetailsComponent implements OnInit, OnDestroy
     {
         return this._formBuilder.group({
             id       : [this.todo.id],
-            title    : [this.todo.title],
-            notes    : [this.todo.notes],
-            startDate: [this.todo.startDate],
-            dueDate  : [this.todo.dueDate],
-            completed: [this.todo.completed],
-            starred  : [this.todo.starred],
-            important: [this.todo.important],
-            deleted  : [this.todo.deleted],
-            tags     : [this.todo.tags]
+            title    : [this.todo.subject],
+            notes    : [this.todo.message],
+            startDate: [this.todo.dateFrom],
+            dueDate  : [this.todo.dateTo],
+            completed: [this.todo.done]
         });
     }
 
@@ -146,24 +160,24 @@ export class TodoDetailsComponent implements OnInit, OnDestroy
      *
      * @param event
      */
-    toggleStar(event): void
-    {
-        event.stopPropagation();
-        this.todo.toggleStar();
-        this._todoService.updateTodo(this.todo);
-    }
+    // toggleStar(event): void
+    // {
+    //     event.stopPropagation();
+    //     this.todo.toggleStar();
+    //     this._todoService.updateTodo(this.todo);
+    // }
 
     /**
      * Toggle important
      *
      * @param event
      */
-    toggleImportant(event): void
-    {
-        event.stopPropagation();
-        this.todo.toggleImportant();
-        this._todoService.updateTodo(this.todo);
-    }
+    // toggleImportant(event): void
+    // {
+    //     event.stopPropagation();
+    //     this.todo.toggleImportant();
+    //     this._todoService.updateTodo(this.todo);
+    // }
 
     /**
      * Toggle Completed
@@ -173,8 +187,7 @@ export class TodoDetailsComponent implements OnInit, OnDestroy
     toggleCompleted(event): void
     {
         event.stopPropagation();
-        this.todo.toggleCompleted();
-        this._todoService.updateTodo(this.todo);
+        this.taskService.deleteTask(this.todo.id);
     }
 
     /**
@@ -184,9 +197,7 @@ export class TodoDetailsComponent implements OnInit, OnDestroy
      */
     toggleDeleted(event): void
     {
-        event.stopPropagation();
-        this.todo.toggleDeleted();
-        this._todoService.updateTodo(this.todo);
+        this.toggleCompleted(event)
     }
 
     /**
@@ -194,10 +205,10 @@ export class TodoDetailsComponent implements OnInit, OnDestroy
      *
      * @param tagId
      */
-    toggleTagOnTodo(tagId): void
-    {
-        this._todoService.toggleTagOnTodo(tagId, this.todo);
-    }
+    // toggleTagOnTodo(tagId): void
+    // {
+    //     this._todoService.toggleTagOnTodo(tagId, this.todo);
+    // }
 
     /**
      * Has tag?
@@ -205,10 +216,10 @@ export class TodoDetailsComponent implements OnInit, OnDestroy
      * @param tagId
      * @returns {any}
      */
-    hasTag(tagId): any
-    {
-        return this._todoService.hasTag(tagId, this.todo);
-    }
+    // hasTag(tagId): any
+    // {
+    //     return this._todoService.hasTag(tagId, this.todo);
+    // }
 
     /**
      * Add todo

@@ -4,6 +4,8 @@ import { Subject } from 'rxjs';
 import { Todo } from 'app/main/apps/todo/todo.model';
 import { TodoService } from 'app/main/apps/todo/todo.service';
 import { takeUntil } from 'rxjs/operators';
+import { Task } from "../../../../../models/task.types";
+import {TaskService} from "../../../../../services/task.service";
 
 @Component({
     selector     : 'todo-list-item',
@@ -16,7 +18,7 @@ export class TodoListItemComponent implements OnInit, OnDestroy
     tags: any[];
 
     @Input()
-    todo: Todo;
+    todo: Task;
 
     @HostBinding('class.selected')
     selected: boolean;
@@ -38,7 +40,8 @@ export class TodoListItemComponent implements OnInit, OnDestroy
      */
     constructor(
         private _todoService: TodoService,
-        private _activatedRoute: ActivatedRoute
+        private _activatedRoute: ActivatedRoute,
+        private taskService: TaskService
     )
     {
         // Disable move if path is not /all
@@ -61,8 +64,7 @@ export class TodoListItemComponent implements OnInit, OnDestroy
     ngOnInit(): void
     {
         // Set the initial values
-        this.todo = new Todo(this.todo);
-        this.completed = this.todo.completed;
+        this.completed = this.todo.done;
 
         // Subscribe to update on selected todo change
         this._todoService.onSelectedTodosChanged
@@ -116,24 +118,24 @@ export class TodoListItemComponent implements OnInit, OnDestroy
     /**
      * Toggle star
      */
-    toggleStar(event): void
-    {
-        event.stopPropagation();
-
-        this.todo.toggleStar();
-        this._todoService.updateTodo(this.todo);
-    }
+    // toggleStar(event): void
+    // {
+    //     event.stopPropagation();
+    //
+    //     this.todo.toggleStar();
+    //     this._todoService.updateTodo(this.todo);
+    // }
 
     /**
      * Toggle Important
      */
-    toggleImportant(event): void
-    {
-        event.stopPropagation();
-
-        this.todo.toggleImportant();
-        this._todoService.updateTodo(this.todo);
-    }
+    // toggleImportant(event): void
+    // {
+    //     event.stopPropagation();
+    //
+    //     this.todo.toggleImportant();
+    //     this._todoService.updateTodo(this.todo);
+    // }
 
     /**
      * Toggle Completed
@@ -141,8 +143,6 @@ export class TodoListItemComponent implements OnInit, OnDestroy
     toggleCompleted(event): void
     {
         event.stopPropagation();
-
-        this.todo.toggleCompleted();
-        this._todoService.updateTodo(this.todo);
+        this.taskService.deleteTask(this.todo.id)
     }
 }

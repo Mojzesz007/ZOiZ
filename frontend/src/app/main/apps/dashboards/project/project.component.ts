@@ -53,6 +53,7 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
     };
 
     private _unsubscribeAll: Subject<any>;
+    length: number;
 
     /**
      * Constructor
@@ -186,10 +187,13 @@ export class ProjectDashboardComponent implements OnInit, OnDestroy
         this.widgets = this._projectDashboardService.widgets;
 
         // Get tasks from database and display count
-        this._taskService.getAllTasks()
+        this._taskService.getUserTasks(JSON.parse(localStorage.getItem('user'))['id'])
         .pipe(takeUntil(this._unsubscribeAll))
         .subscribe({
-            next: (respose: Task[]) => this.tasks = respose
+            next: (respose: Task[]) => {
+                this.tasks = respose;
+                this.length = this.tasks.filter((task) => {return task.done}).length
+            }
         })
         
         
