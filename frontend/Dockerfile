@@ -8,7 +8,7 @@ RUN mkdir -p /app
 # The /app directory should act as the main application directory
 WORKDIR /app
 
-COPY dist/fuse ./dist/fuse
+COPY frontend/dist/fuse ./dist/fuse
 
 # Copy the app package and package-lock.json file
 COPY package*.json ./
