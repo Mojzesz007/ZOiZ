@@ -48,7 +48,7 @@ export class CalendarEventModel
         this.cssClass = data.cssClass || '';
         this.meta = {
             location: data.meta && data.meta.location || '',
-            notes   : data.meta && data.meta.notes || ''
+            message   : data.meta && data.meta.notes || ''
         };
     }
 }

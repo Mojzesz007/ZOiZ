@@ -104,7 +104,7 @@ export class ProfileFakeDb
                 'like'    : 98,
                 'share'   : 6,
                 'article' : {
-                    'title'   : 'Never stop changing!',
+                    'subject'   : 'Never stop changing!',
                     'subtitle': 'John Westrock',
                     'excerpt' : 'John Westrock\'s new photo album called \'Never stop changing\' is published! It features more than 200 photos that will take you right in.',
                     'media'   : {
@@ -144,27 +144,27 @@ export class ProfileFakeDb
             'media': [
                 {
                     'type'   : 'photo',
-                    'title'  : 'A Walk Amongst Friends',
+                    'subject'  : 'A Walk Amongst Friends',
                     'preview': 'assets/images/profile/a-walk-amongst-friends-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Braies Lake',
+                    'subject'  : 'Braies Lake',
                     'preview': 'assets/images/profile/braies-lake-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Fall Glow',
+                    'subject'  : 'Fall Glow',
                     'preview': 'assets/images/profile/fall-glow-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'First Snow',
+                    'subject'  : 'First Snow',
                     'preview': 'assets/images/profile/first-snow-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Lago di Braies',
+                    'subject'  : 'Lago di Braies',
                     'preview': 'assets/images/profile/lago-di-braies-small.jpg'
                 }
             ]
@@ -175,52 +175,52 @@ export class ProfileFakeDb
             'media': [
                 {
                     'type'   : 'photo',
-                    'title'  : 'Lago di Sorapis',
+                    'subject'  : 'Lago di Sorapis',
                     'preview': 'assets/images/profile/lago-di-sorapis-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Morain Lake',
+                    'subject'  : 'Morain Lake',
                     'preview': 'assets/images/profile/morain-lake-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Never Stop Changing',
+                    'subject'  : 'Never Stop Changing',
                     'preview': 'assets/images/profile/never-stop-changing-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Reaching',
+                    'subject'  : 'Reaching',
                     'preview': 'assets/images/profile/reaching-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Yosemite',
+                    'subject'  : 'Yosemite',
                     'preview': 'assets/images/profile/yosemite-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'A Walk Amongst Friends',
+                    'subject'  : 'A Walk Amongst Friends',
                     'preview': 'assets/images/profile/a-walk-amongst-friends-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Braies Lake',
+                    'subject'  : 'Braies Lake',
                     'preview': 'assets/images/profile/braies-lake-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Fall Glow',
+                    'subject'  : 'Fall Glow',
                     'preview': 'assets/images/profile/fall-glow-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'First Snow',
+                    'subject'  : 'First Snow',
                     'preview': 'assets/images/profile/first-snow-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Lago di Braies',
+                    'subject'  : 'Lago di Braies',
                     'preview': 'assets/images/profile/lago-di-braies-small.jpg'
                 }
             ]
@@ -231,37 +231,37 @@ export class ProfileFakeDb
             'media': [
                 {
                     'type'   : 'photo',
-                    'title'  : 'Lago di Sorapis',
+                    'subject'  : 'Lago di Sorapis',
                     'preview': 'assets/images/profile/lago-di-sorapis-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Morain Lake',
+                    'subject'  : 'Morain Lake',
                     'preview': 'assets/images/profile/morain-lake-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Never Stop Changing',
+                    'subject'  : 'Never Stop Changing',
                     'preview': 'assets/images/profile/never-stop-changing-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Reaching',
+                    'subject'  : 'Reaching',
                     'preview': 'assets/images/profile/reaching-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Yosemite',
+                    'subject'  : 'Yosemite',
                     'preview': 'assets/images/profile/yosemite-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'A Walk Amongst Friends',
+                    'subject'  : 'A Walk Amongst Friends',
                     'preview': 'assets/images/profile/a-walk-amongst-friends-small.jpg'
                 },
                 {
                     'type'   : 'photo',
-                    'title'  : 'Braies Lake',
+                    'subject'  : 'Braies Lake',
                     'preview': 'assets/images/profile/braies-lake-small.jpg'
                 }
             ]

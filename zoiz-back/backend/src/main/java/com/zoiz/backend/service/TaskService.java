@@ -104,6 +104,15 @@ public class TaskService {
                 .orElseThrow(() -> new NoSuchElementException("Cant find task with id: " + id));
     }
 
+    /**
+     * Metoda zwraca obiekty zadań danego użytkownika
+     *
+     * @param id wybranego użytkownika
+     **/
+    public List<Task> findByUserId(Long id) {
+        return taskRepository.findTaskByUserId(id);
+    }
+
 
     /**
      * Metoda usuwa obiekt wybranego zadania z bazy danych

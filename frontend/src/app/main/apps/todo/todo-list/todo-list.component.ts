@@ -8,6 +8,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { Todo } from 'app/main/apps/todo/todo.model';
 import { TodoService } from 'app/main/apps/todo/todo.service';
 import { takeUntil } from 'rxjs/operators';
+import { Task } from "../../../../models/task.types";
 
 @Component({
     selector     : 'todo-list',
@@ -18,8 +19,8 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class TodoListComponent implements OnInit, OnDestroy
 {
-    todos: Todo[];
-    currentTodo: Todo;
+    todos: Task[];
+    currentTodo: Task;
 
     // Private
     private _unsubscribeAll: Subject<any>;

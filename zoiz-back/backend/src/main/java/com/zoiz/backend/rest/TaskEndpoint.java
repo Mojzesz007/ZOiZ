@@ -3,6 +3,7 @@ package com.zoiz.backend.rest;
 import com.zoiz.backend.models.Task;
 import com.zoiz.backend.repository.TaskRepository;
 import com.zoiz.backend.service.TaskService;
+import org.springframework.data.annotation.Version;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -101,6 +102,16 @@ public class TaskEndpoint {
     ) {
         return new ResponseEntity<>(
                 taskService.findById(id),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{id}")
+    @ResponseBody
+    ResponseEntity<List<Task>> getUserTasks(
+            @PathVariable long id
+    ) {
+        return new ResponseEntity<>(
+                taskService.findByUserId(id),
                 HttpStatus.OK);
     }
 }

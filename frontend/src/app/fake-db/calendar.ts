@@ -19,7 +19,7 @@ export class CalendarFakeDb
                 {
                     start    : subDays(startOfDay(new Date()), 1),
                     end      : addDays(new Date(), 1),
-                    title    : 'A 3 day event',
+                    subject    : 'A 3 day event',
                     allDay   : true,
                     color    : {
                         primary  : '#F44336',
@@ -37,7 +37,7 @@ export class CalendarFakeDb
                 },
                 {
                     start    : startOfDay(new Date()),
-                    title    : 'An event with no end date',
+                    subject    : 'An event with no end date',
                     allDay   : false,
                     color    : {
                         primary  : '#FF9800',
@@ -56,7 +56,7 @@ export class CalendarFakeDb
                 {
                     start    : subDays(endOfMonth(new Date()), 3),
                     end      : addDays(endOfMonth(new Date()), 3),
-                    title    : 'A long event that spans 2 months',
+                    subject    : 'A long event that spans 2 months',
                     allDay   : false,
                     color    : {
                         primary  : '#1E90FF',
@@ -75,7 +75,7 @@ export class CalendarFakeDb
                 {
                     start    : addHours(startOfDay(new Date()), 2),
                     end      : new Date(),
-                    title    : 'A draggable and resizable event',
+                    subject    : 'A draggable and resizable event',
                     allDay   : false,
                     color    : {
                         primary  : '#673AB7',

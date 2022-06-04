@@ -40,7 +40,7 @@ export class CalendarEventFormDialogComponent
 
         if ( this.action === 'edit' )
         {
-            this.dialogTitle = this.event.title;
+            this.dialogTitle = this.event.subject;
         }
         else
         {
@@ -66,7 +66,7 @@ export class CalendarEventFormDialogComponent
     createEventForm(): FormGroup
     {
         return new FormGroup({
-            title : new FormControl(this.event.title),
+            subject : new FormControl(this.event.subject),
             start : new FormControl(this.event.start),
             end   : new FormControl(this.event.end),
             allDay: new FormControl(this.event.allDay),

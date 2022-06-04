@@ -8,6 +8,8 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { Todo } from 'app/main/apps/todo/todo.model';
 import { TodoService } from 'app/main/apps/todo/todo.service';
+import { TaskService } from "../../../services/task.service";
+import { Task } from"../../../models/task.types";
 
 @Component({
     selector     : 'todo',
@@ -23,7 +25,9 @@ export class TodoComponent implements OnInit, OnDestroy
     filters: any[];
     tags: any[];
     searchInput: FormControl;
-    currentTodo: Todo;
+    currentTodo: Task;
+    tasks: Task[];
+    userId: number = JSON.parse(localStorage.getItem('user'))['id'];
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -36,7 +40,8 @@ export class TodoComponent implements OnInit, OnDestroy
      */
     constructor(
         private _fuseSidebarService: FuseSidebarService,
-        private _todoService: TodoService
+        private _todoService: TodoService,
+        private taskService: TaskService
     )
     {
         // Set the defaults
@@ -55,6 +60,12 @@ export class TodoComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
+        this.taskService.getUserTasks(this.userId)
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(tasks => {
+                this.tasks = tasks;
+            })
+
         this._todoService.onSelectedTodosChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(selectedTodos => {
@@ -155,10 +166,10 @@ export class TodoComponent implements OnInit, OnDestroy
      *
      * @param tagId
      */
-    toggleTagOnSelectedTodos(tagId): void
-    {
-        this._todoService.toggleTagOnSelectedTodos(tagId);
-    }
+    // toggleTagOnSelectedTodos(tagId): void
+    // {
+    //     this._todoService.toggleTagOnSelectedTodos(tagId);
+    // }
 
     /**
      * Toggle the sidebar
