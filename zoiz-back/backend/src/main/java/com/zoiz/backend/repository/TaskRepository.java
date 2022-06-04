@@ -18,6 +18,13 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
     Optional<Task> findByIdEquals(Long id);
 
     /**
+     * Metoda zwraca zadania danego użytkownika
+     *
+     * @param id id uzytkownika ktrórego te dane dotyczą
+     **/
+    List<Task> findTaskByUserId(Long id);
+
+    /**
      * Metoda zwraca zadania pomiędzy podanymi datami
      *
      * @param startDate data początkowa

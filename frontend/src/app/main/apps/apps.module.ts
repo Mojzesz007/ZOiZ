@@ -9,10 +9,6 @@ const routes = [
         loadChildren: './dashboards/project/project.module#ProjectDashboardModule'
     },
     {
-        path        : 'calendar',
-        loadChildren: './calendar/calendar.module#CalendarModule'
-    },
-    {
         path        : 'todo',
         loadChildren: './todo/todo.module#TodoModule'
     },

@@ -7,13 +7,16 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { FuseUtils } from '@fuse/utils';
 
 import { Todo } from 'app/main/apps/todo/todo.model';
+import {takeUntil} from "rxjs/operators";
+import {TaskService} from "../../../services/task.service";
+import { Task } from "../../../models/task.types";
 
 @Injectable()
 export class TodoService implements Resolve<any>
 {
-    todos: Todo[];
-    selectedTodos: Todo[];
-    currentTodo: Todo;
+    todos: Task[];
+    selectedTodos: Task[];
+    currentTodo: Task;
     searchText: string;
     filters: any[];
     tags: any[];
@@ -27,6 +30,9 @@ export class TodoService implements Resolve<any>
     onSearchTextChanged: BehaviorSubject<any>;
     onNewTodoClicked: Subject<any>;
 
+
+    private _unsubscribeAll: Subject<any>;
+
     /**
      * Constructor
      *
@@ -35,7 +41,8 @@ export class TodoService implements Resolve<any>
      */
     constructor(
         private _httpClient: HttpClient,
-        private _location: Location
+        private _location: Location,
+        private taskService: TaskService
     )
     {
         // Set the defaults
@@ -134,19 +141,19 @@ export class TodoService implements Resolve<any>
     /**
      * Get todos
      *
-     * @returns {Promise<Todo[]>}
+     * @returns {Promise<Task[]>}
      */
-    getTodos(): Promise<Todo[]>
+    getTodos(): Promise<Task[]>
     {
-        if ( this.routeParams.tagHandle )
-        {
-            return this.getTodosByTag(this.routeParams.tagHandle);
-        }
-
-        if ( this.routeParams.filterHandle )
-        {
-            return this.getTodosByFilter(this.routeParams.filterHandle);
-        }
+        // if ( this.routeParams.tagHandle )
+        // {
+        //     return this.getTodosByTag(this.routeParams.tagHandle);
+        // }
+        //
+        // if ( this.routeParams.filterHandle )
+        // {
+        //     return this.getTodosByFilter(this.routeParams.filterHandle);
+        // }
 
         return this.getTodosByParams(this.routeParams);
     }
@@ -155,24 +162,39 @@ export class TodoService implements Resolve<any>
      * Get todos by params
      *
      * @param handle
-     * @returns {Promise<Todo[]>}
+     * @returns {Promise<Task[]>}
      */
-    getTodosByParams(handle): Promise<Todo[]>
+
+    ngOnDestroy(): void
+    {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
+    }
+
+    getTodosByParams(handle): Promise<Task[]>
     {
         return new Promise((resolve, reject) => {
 
-            this._httpClient.get('api/todo-todos')
-                .subscribe((todos: any) => {
-                    this.todos = todos.map(todo => {
-                        return new Todo(todo);
-                    });
-
-                    this.todos = FuseUtils.filterArrayByString(this.todos, this.searchText);
+            this.taskService.getUserTasks(JSON.parse(localStorage.getItem('user'))['id'])
+                .subscribe(tasks => {
+                    this.todos = tasks;
 
                     this.onTodosChanged.next(this.todos);
 
                     resolve(this.todos);
-                });
+                })
+
+            // this._httpClient.get('api/todo-todos')
+            //     .subscribe((todos: any) => {
+            //         this.todos = todos.map(todo => {
+            //             return new Todo(todo);
+            //         });
+            //
+            //         // this.todos = FuseUtils.filterArrayByString(this.todos, this.searchText);
+            //
+            //
+            //     });
         });
     }
 
@@ -182,34 +204,34 @@ export class TodoService implements Resolve<any>
      * @param handle
      * @returns {Promise<Todo[]>}
      */
-    getTodosByFilter(handle): Promise<Todo[]>
-    {
-
-        let param = handle + '=true';
-
-        if ( handle === 'dueDate' )
-        {
-            param = handle + '=^$|\\s+';
-        }
-
-        return new Promise((resolve, reject) => {
-
-            this._httpClient.get('api/todo-todos?' + param)
-                .subscribe((todos: any) => {
-
-                    this.todos = todos.map(todo => {
-                        return new Todo(todo);
-                    });
-
-                    this.todos = FuseUtils.filterArrayByString(this.todos, this.searchText);
-
-                    this.onTodosChanged.next(this.todos);
-
-                    resolve(this.todos);
-
-                }, reject);
-        });
-    }
+    // getTodosByFilter(handle): Promise<Todo[]>
+    // {
+    //
+    //     let param = handle + '=true';
+    //
+    //     if ( handle === 'dueDate' )
+    //     {
+    //         param = handle + '=^$|\\s+';
+    //     }
+    //
+    //     return new Promise((resolve, reject) => {
+    //
+    //         this._httpClient.get('api/todo-todos?' + param)
+    //             .subscribe((todos: any) => {
+    //
+    //                 this.todos = todos.map(todo => {
+    //                     return new Todo(todo);
+    //                 });
+    //
+    //                 this.todos = FuseUtils.filterArrayByString(this.todos, this.searchText);
+    //
+    //                 this.onTodosChanged.next(this.todos);
+    //
+    //                 resolve(this.todos);
+    //
+    //             }, reject);
+    //     });
+    // }
 
     /**
      * Get todos by tag
@@ -217,31 +239,31 @@ export class TodoService implements Resolve<any>
      * @param handle
      * @returns {Promise<Todo[]>}
      */
-    getTodosByTag(handle): Promise<Todo[]>
-    {
-        return new Promise((resolve, reject) => {
-            this._httpClient.get('api/todo-tags?handle=' + handle)
-                .subscribe((tags: any) => {
-
-                    const tagId = tags[0].id;
-
-                    this._httpClient.get('api/todo-todos?tags=' + tagId)
-                        .subscribe((todos: any) => {
-
-                            this.todos = todos.map(todo => {
-                                return new Todo(todo);
-                            });
-
-                            this.todos = FuseUtils.filterArrayByString(this.todos, this.searchText);
-
-                            this.onTodosChanged.next(this.todos);
-
-                            resolve(this.todos);
-
-                        }, reject);
-                });
-        });
-    }
+    // getTodosByTag(handle): Promise<Todo[]>
+    // {
+    //     return new Promise((resolve, reject) => {
+    //         this._httpClient.get('api/todo-tags?handle=' + handle)
+    //             .subscribe((tags: any) => {
+    //
+    //                 const tagId = tags[0].id;
+    //
+    //                 this._httpClient.get('api/todo-todos?tags=' + tagId)
+    //                     .subscribe((todos: any) => {
+    //
+    //                         this.todos = todos.map(todo => {
+    //                             return new Todo(todo);
+    //                         });
+    //
+    //                         this.todos = FuseUtils.filterArrayByString(this.todos, this.searchText);
+    //
+    //                         this.onTodosChanged.next(this.todos);
+    //
+    //                         resolve(this.todos);
+    //
+    //                     }, reject);
+    //             });
+    //     });
+    // }
 
     /**
      * Toggle selected todo by id
@@ -375,12 +397,12 @@ export class TodoService implements Resolve<any>
      *
      * @param tagId
      */
-    toggleTagOnSelectedTodos(tagId): void
-    {
-        this.selectedTodos.map(todo => {
-            this.toggleTagOnTodo(tagId, todo);
-        });
-    }
+    // toggleTagOnSelectedTodos(tagId): void
+    // {
+    //     this.selectedTodos.map(todo => {
+    //         this.toggleTagOnTodo(tagId, todo);
+    //     });
+    // }
 
     /**
      * Toggle tag on todo
@@ -388,21 +410,21 @@ export class TodoService implements Resolve<any>
      * @param tagId
      * @param todo
      */
-    toggleTagOnTodo(tagId, todo): void
-    {
-        const index = todo.tags.indexOf(tagId);
-
-        if ( index !== -1 )
-        {
-            todo.tags.splice(index, 1);
-        }
-        else
-        {
-            todo.tags.push(tagId);
-        }
-
-        this.updateTodo(todo);
-    }
+    // toggleTagOnTodo(tagId, todo): void
+    // {
+    //     const index = todo.tags.indexOf(tagId);
+    //
+    //     if ( index !== -1 )
+    //     {
+    //         todo.tags.splice(index, 1);
+    //     }
+    //     else
+    //     {
+    //         todo.tags.push(tagId);
+    //     }
+    //
+    //     this.updateTodo(todo);
+    // }
 
     /**
      * Has tag?
@@ -411,15 +433,15 @@ export class TodoService implements Resolve<any>
      * @param todo
      * @returns {boolean}
      */
-    hasTag(tagId, todo): any
-    {
-        if ( !todo.tags )
-        {
-            return false;
-        }
-
-        return todo.tags.indexOf(tagId) !== -1;
-    }
+    // hasTag(tagId, todo): any
+    // {
+    //     if ( !todo.tags )
+    //     {
+    //         return false;
+    //     }
+    //
+    //     return todo.tags.indexOf(tagId) !== -1;
+    // }
 
     /**
      * Update the todo
@@ -427,11 +449,12 @@ export class TodoService implements Resolve<any>
      * @param todo
      * @returns {Promise<any>}
      */
-    updateTodo(todo): any
+    updateTodo(todo: Task): any
     {
+        console.log(todo)
         return new Promise((resolve, reject) => {
 
-            this._httpClient.post('api/todo-todos/' + todo.id, {...todo})
+            this.taskService.updateTask(todo)
                 .subscribe(response => {
 
                     this.getTodos().then(todos => {

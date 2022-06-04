@@ -43,7 +43,7 @@ export class ProjectDashboardDb
             'detail'      : 'You can show some detailed information about this widget in here.'
         },
         'widget2'      : {
-            'title' : 'Overdue',
+            'subject' : 'Overdue',
             'data'  : {
                 'label': 'TASKS',
                 'count': 4,
@@ -55,7 +55,7 @@ export class ProjectDashboardDb
             'detail': 'You can show some detailed information about this widget in here.'
         },
         'widget3'      : {
-            'title' : 'Issues',
+            'subject' : 'Issues',
             'data'  : {
                 'label': 'OPEN',
                 'count': 32,
@@ -67,7 +67,7 @@ export class ProjectDashboardDb
             'detail': 'You can show some detailed information about this widget in here.'
         },
         'widget4'      : {
-            'title' : 'Features',
+            'subject' : 'Features',
             'data'  : {
                 'label': 'PROPOSALS',
                 'count': 42,
@@ -79,7 +79,7 @@ export class ProjectDashboardDb
             'detail': 'You can show some detailed information about this widget in here.'
         },
         'widget5'      : {
-            'title'     : 'Github Issues',
+            'subject'     : 'Github Issues',
             'ranges'    : {
                 'TW': 'This Week',
                 'LW': 'Last Week',
@@ -1060,7 +1060,7 @@ export class ProjectDashboardDb
             }
         },
         'widget6'      : {
-            'title'      : 'Task Distribution',
+            'subject'      : 'Task Distribution',
             'ranges'     : {
                 'TW': 'This Week',
                 'LW': 'Last Week',
@@ -1123,7 +1123,7 @@ export class ProjectDashboardDb
                 ]
             },
             'footerLeft' : {
-                'title': 'Tasks Added',
+                'subject': 'Tasks Added',
                 'count': {
                     '2W': 487,
                     'LW': 526,
@@ -1131,7 +1131,7 @@ export class ProjectDashboardDb
                 }
             },
             'footerRight': {
-                'title': 'Tasks Completed',
+                'subject': 'Tasks Completed',
                 'count': {
                     '2W': 193,
                     'LW': 260,
@@ -1140,7 +1140,7 @@ export class ProjectDashboardDb
             }
         },
         'widget7'      : {
-            'title'   : 'Schedule',
+            'subject'   : 'Schedule',
             'ranges'  : {
                 'T' : 'Today',
                 'TM': 'Tomorrow'
@@ -1148,69 +1148,69 @@ export class ProjectDashboardDb
             'schedule': {
                 'T' : [
                     {
-                        'title'   : 'Group Meeting',
+                        'subject'   : 'Group Meeting',
                         'time'    : 'In 32 minutes',
                         'location': 'Room 1B'
                     },
                     {
-                        'title': 'Coffee Break',
+                        'subject': 'Coffee Break',
                         'time' : '10:30 AM'
                     },
                     {
-                        'title': 'Public Beta Release',
+                        'subject': 'Public Beta Release',
                         'time' : '11:00 AM'
                     },
                     {
-                        'title': 'Lunch',
+                        'subject': 'Lunch',
                         'time' : '12:10 PM'
                     },
                     {
-                        'title': 'Dinner with David',
+                        'subject': 'Dinner with David',
                         'time' : '17:30 PM'
                     },
                     {
-                        'title': 'Jane\'s Birthday Party',
+                        'subject': 'Jane\'s Birthday Party',
                         'time' : '19:30 PM'
                     },
                     {
-                        'title': 'Overseer\'s Retirement Party',
+                        'subject': 'Overseer\'s Retirement Party',
                         'time' : '21:30 PM'
                     }
                 ],
                 'TM': [
                     {
-                        'title': 'Marketing Meeting',
+                        'subject': 'Marketing Meeting',
                         'time' : '09:00 AM'
                     },
                     {
-                        'title': 'Public Announcement',
+                        'subject': 'Public Announcement',
                         'time' : '11:00 AM'
                     },
                     {
-                        'title': 'Lunch',
+                        'subject': 'Lunch',
                         'time' : '12:10 PM'
                     },
                     {
-                        'title': 'Meeting with Beta Testers',
+                        'subject': 'Meeting with Beta Testers',
                         'time' : '15:00 AM'
                     },
                     {
-                        'title': 'Live Stream',
+                        'subject': 'Live Stream',
                         'time' : '17:30 PM'
                     },
                     {
-                        'title': 'Release Party',
+                        'subject': 'Release Party',
                         'time' : '19:30 PM'
                     },
                     {
-                        'title': 'CEO\'s Party',
+                        'subject': 'CEO\'s Party',
                         'time' : '22:30 PM'
                     }
                 ]
             }
         },
         'widget8'      : {
-            'title'    : 'Budget Distribution',
+            'subject'    : 'Budget Distribution',
             'mainChart': [
                 {
                     'name' : 'Wireframing',
@@ -1235,14 +1235,14 @@ export class ProjectDashboardDb
             ]
         },
         'widget9'      : {
-            'title'         : 'Spent',
+            'subject'         : 'Spent',
             'ranges'        : {
                 'TW': 'This Week',
                 'LW': 'Last Week',
                 '2W': '2 Weeks Ago'
             },
             'weeklySpent'   : {
-                'title': 'WEEKLY SPENT',
+                'subject': 'WEEKLY SPENT',
                 'count': {
                     '2W': '2,682.85',
                     'LW': '1,445.34',
@@ -1357,7 +1357,7 @@ export class ProjectDashboardDb
                 }
             },
             'totalSpent'    : {
-                'title': 'TOTAL SPENT',
+                'subject': 'TOTAL SPENT',
                 'count': {
                     '2W': '29,682.85',
                     'LW': '31,128.19',
@@ -1472,7 +1472,7 @@ export class ProjectDashboardDb
                 }
             },
             'remaining'     : {
-                'title': 'REMAINING',
+                'subject': 'REMAINING',
                 'count': {
                     '2W': '94.317,15',
                     'LW': '92.871,81',
@@ -1587,35 +1587,35 @@ export class ProjectDashboardDb
                 }
             },
             'totalRemaining': {
-                'title': 'TOTAL BUDGET',
+                'subject': 'TOTAL BUDGET',
                 'count': '124.000,00'
             },
             'totalBudget'   : {
-                'title': 'TOTAL BUDGET',
+                'subject': 'TOTAL BUDGET',
                 'count': '124.000,00'
             }
         },
         'widget10'     : {
-            'title': 'Budget Details',
+            'subject': 'Budget Details',
             'table': {
                 'columns': [
                     {
-                        'title': 'Budget Type'
+                        'subject': 'Budget Type'
                     },
                     {
-                        'title': 'Total Budget'
+                        'subject': 'Total Budget'
                     },
                     {
-                        'title': 'Spent ($)'
+                        'subject': 'Spent ($)'
                     },
                     {
-                        'title': 'Spent (%)'
+                        'subject': 'Spent (%)'
                     },
                     {
-                        'title': 'Remaining ($)'
+                        'subject': 'Remaining ($)'
                     },
                     {
-                        'title': 'Remaining (%)'
+                        'subject': 'Remaining (%)'
                     }
                 ],
                 'rows'   : [
@@ -1783,7 +1783,7 @@ export class ProjectDashboardDb
             }
         },
         'widget11'     : {
-            'title': 'Team Members',
+            'subject': 'Team Members',
             'table': {
                 'columns': ['avatar', 'name', 'position', 'office', 'email', 'phone'],
                 'rows'   : [
