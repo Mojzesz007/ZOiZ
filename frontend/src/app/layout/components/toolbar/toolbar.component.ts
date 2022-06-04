@@ -50,27 +50,27 @@ export class ToolbarComponent implements OnInit, OnDestroy
         // Set the defaults
         this.userStatusOptions = [
             {
-                title: 'Online',
+                subject: 'Online',
                 icon : 'icon-checkbox-marked-circle',
                 color: '#4CAF50'
             },
             {
-                title: 'Away',
+                subject: 'Away',
                 icon : 'icon-clock',
                 color: '#FFC107'
             },
             {
-                title: 'Do not Disturb',
+                subject: 'Do not Disturb',
                 icon : 'icon-minus-circle',
                 color: '#F44336'
             },
             {
-                title: 'Invisible',
+                subject: 'Invisible',
                 icon : 'icon-checkbox-blank-circle-outline',
                 color: '#BDBDBD'
             },
             {
-                title: 'Offline',
+                subject: 'Offline',
                 icon : 'icon-checkbox-blank-circle-outline',
                 color: '#616161'
             }
@@ -79,12 +79,12 @@ export class ToolbarComponent implements OnInit, OnDestroy
         this.languages = [
             {
                 id   : 'en',
-                title: 'English',
+                subject: 'English',
                 flag : 'us'
             },
             {
                 id   : 'tr',
-                title: 'Turkish',
+                subject: 'Turkish',
                 flag : 'tr'
             }
         ];
@@ -170,7 +170,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
     logout() {
         localStorage.removeItem('user');
-        this._router.navigateByUrl('/login');
+        this._router.navigateByUrl('/pages/auth/login');
     }
 
 }

@@ -24,6 +24,7 @@ export class TodoDetailsComponent implements OnInit, OnDestroy
     tags: any[];
     formType: string;
     todoForm: FormGroup;
+    done: boolean = false;
 
     @ViewChild('titleInput', {static: false})
     titleInputField;
@@ -147,11 +148,12 @@ export class TodoDetailsComponent implements OnInit, OnDestroy
     {
         return this._formBuilder.group({
             id       : [this.todo.id],
-            title    : [this.todo.subject],
-            notes    : [this.todo.message],
-            startDate: [this.todo.dateFrom],
-            dueDate  : [this.todo.dateTo],
-            completed: [this.todo.done]
+            subject    : [this.todo.subject],
+            message    : [this.todo.message],
+            dateFrom: [this.todo.dateFrom],
+            dateTo  : [this.todo.dateTo],
+            done: [this.todo.done],
+            user: [this.todo.user]
         });
     }
 
@@ -187,7 +189,8 @@ export class TodoDetailsComponent implements OnInit, OnDestroy
     toggleCompleted(event): void
     {
         event.stopPropagation();
-        this.taskService.deleteTask(this.todo.id);
+        this.done = !this.done;
+        this.addTodo();
     }
 
     /**
@@ -226,6 +229,11 @@ export class TodoDetailsComponent implements OnInit, OnDestroy
      */
     addTodo(): void
     {
-        this._todoService.updateTodo(this.todoForm.getRawValue());
+        let raw = this.todoForm.getRawValue()
+        console.log(raw)
+        raw['done'] = this.done;
+        raw['user'] = JSON.parse(localStorage.getItem('user'));
+
+        this._todoService.updateTodo(raw);
     }
 }

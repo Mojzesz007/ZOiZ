@@ -451,6 +451,7 @@ export class TodoService implements Resolve<any>
      */
     updateTodo(todo: Task): any
     {
+        console.log(todo)
         return new Promise((resolve, reject) => {
 
             this.taskService.updateTask(todo)

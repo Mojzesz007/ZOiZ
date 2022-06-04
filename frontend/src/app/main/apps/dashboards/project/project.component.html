@@ -68,12 +68,12 @@
                             </div>
                         </div>
 
-                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
-                            <span class="h4 secondary-text text-truncate">
-                                {{widgets.widget2.data.extra.label}}:
-                            </span>
-                            <span class="h4 ml-8">{{widgets.widget2.data.extra.count}}</span>
-                        </div>
+<!--                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">-->
+<!--                            <span class="h4 secondary-text text-truncate">-->
+<!--                                {{widgets.widget2.data.extra.label}}:-->
+<!--                            </span>-->
+<!--                            <span class="h4 ml-8">{{widgets.widget2.data.extra.count}}</span>-->
+<!--                        </div>-->
                     </div>
                     <!-- / Front -->
 
@@ -89,28 +89,28 @@
                     <div class="fuse-widget-front">
 
                         <div class="px-16 py-8 border-bottom" fxLayout="row" fxLayoutAlign="space-between center">
-                            <div class="h3">{{widgets.widget7.title}}</div>
-                            <mat-form-field>
-                                <mat-select class="simplified" [(ngModel)]="widget7.currentRange" aria-label="Change range">
-                                    <mat-option *ngFor="let range of widgets.widget7.ranges | keys" [value]="range.key">
-                                        {{range.value}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                            <div class="h3">Activities</div>
+<!--                            <mat-form-field>-->
+<!--                                <mat-select class="simplified" [(ngModel)]="widget7.currentRange" aria-label="Change range">-->
+<!--                                    <mat-option *ngFor="let range of widgets.widget7.ranges | keys" [value]="range.key">-->
+<!--                                        {{range.value}}-->
+<!--                                    </mat-option>-->
+<!--                                </mat-select>-->
+<!--                            </mat-form-field>-->
                         </div>
 
-                        <div class="p-16" fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let event of widgets.widget7.schedule[widget7.currentRange]">
+                        <div class="p-16" fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let event of activities">
                             <div>
-                                <div class="h3">{{event.title}}</div>
+                                <div class="h3">{{event.subject}}</div>
                                 <div>
-                                    <span class="secondary-text">{{event.time}}</span>
-                                    <span *ngIf="event.location">, {{event.location}}</span>
+                                    <span class="secondary-text">{{event.body}}</span>
+                                    <span *ngIf="event.activityStart">, {{event.activityStart}}</span>
                                 </div>
                             </div>
 
-                            <button mat-icon-button aria-label="More information">
-                                <mat-icon>more_vert</mat-icon>
-                            </button>
+<!--                            <button mat-icon-button aria-label="More information">-->
+<!--                                <mat-icon>more_vert</mat-icon>-->
+<!--                            </button>-->
                         </div>
 
                     </div>

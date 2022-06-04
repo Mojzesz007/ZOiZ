@@ -25,10 +25,6 @@ public abstract class StandardEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Version
-    @Column(name = "version")
-    private int version;
-
     @JsonProperty(access = Access.READ_ONLY)
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
@@ -48,14 +44,6 @@ public abstract class StandardEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
     }
 
     public Date getCreatedAt() {
